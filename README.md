@@ -1,6 +1,6 @@
 # constr-sw-2020-1-frontend
 
-####- Para criar um novo componente:
+#### - Para criar um novo componente:
 
 ```ng generate component <diretório><nome_do_componente>```
 
