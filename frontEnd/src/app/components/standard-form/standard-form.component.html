@@ -1,0 +1,17 @@
+<h1 class="mat-display-1">{{ formModel.title }}</h1>
+
+<div class="form-div">
+  <mat-form-field *ngFor="let textInput of textInputs" appearance="fill">
+    <mat-label>{{ textInput.fieldName }}</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field *ngFor="let dropdownInput of dropdownInputs">
+    <mat-label>{{ dropdownInput.fieldName }}</mat-label>
+    <select matNativeControl required>
+      <mat-option *ngFor="let option of dropdownInput.dropdownElements" [value]="option">
+        {{ option }}
+      </mat-option>
+    </select>
+  </mat-form-field>
+</div>
