@@ -1,17 +1,22 @@
 <h1 class="mat-display-1">{{ formModel.title }}</h1>
 
-<div class="form-div">
-  <mat-form-field *ngFor="let textInput of textInputs" appearance="fill">
-    <mat-label>{{ textInput.fieldName }}</mat-label>
-    <input matInput>
-  </mat-form-field>
+  <form #standardForm=ngForm (ngSubmit)="onSubmit(standardForm)">
+    <mat-form-field *ngFor="let textInput of textInputs" appearance="fill">
+      <mat-label>{{ textInput.fieldName }}</mat-label>
+      <input matInput />
+    </mat-form-field>
 
-  <mat-form-field *ngFor="let dropdownInput of dropdownInputs">
-    <mat-label>{{ dropdownInput.fieldName }}</mat-label>
-    <select matNativeControl required>
-      <mat-option *ngFor="let option of dropdownInput.dropdownElements" [value]="option">
-        {{ option }}
-      </mat-option>
-    </select>
-  </mat-form-field>
-</div>
+    <mat-form-field *ngFor="let dropdownInput of dropdownInputs">
+      <mat-label>{{ dropdownInput.fieldName }}</mat-label>
+      <mat-select matNativeControl required>
+        <mat-option
+          *ngFor="let option of dropdownInput.dropdownElements; let i = index"
+          [value]="dropdownInput.dropdownElements[i].id"
+        >
+          {{ dropdownInput.dropdownElements[i].name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-button type="submit" color="primary"> Salvar! </button>
+  </form>

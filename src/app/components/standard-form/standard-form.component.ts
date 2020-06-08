@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormModel } from 'src/app/models/form-interface';
-import { FormInputModel } from 'src/app/models/form-input.model';
+import { FormInputModel, DropdownElement } from 'src/app/models/form-input.model';
 import { InputType } from 'src/app/models/input-type.enum';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-standard-form',
@@ -35,18 +36,46 @@ export class StandardFormComponent implements OnInit {
   }
 
   public buildInputs() {
+    const index = 0;
     this.formModel.inputs.forEach((input) => {
       switch (+input.inputType) {
         case InputType.Text:
         this.textInputs.push(input);
         break;
         case InputType.Dropdown:
-        this.dropdownInputs.push(input);
+        this.dropdownInputs.push(this.formatDropdownElements(input));
         break;
         case InputType.Chip:
         this.chipInpust.push(input);
         break;
       }
     });
+  }
+
+  public getOptions(options: string[]) {
+    const result = new Array<any>();
+    for (let index = 0; index < options.length; index++) {
+      result.push({
+        id: index,
+        name: options[index]
+      });
+    }
+    return result;
+  }
+
+  public formatDropdownElements(model: FormInputModel): FormInputModel {
+    const elements = new Array<DropdownElement>();
+
+    for (let index = 0; index < model.dropdownElements.length; index++) {
+      elements.push({id: index, name: model.dropdownElements[index].name});
+    }
+
+    model.dropdownElements = elements;
+
+    return model;
+  }
+
+  onSubmit(form: NgForm) {
+    console.log('Submitou');
   }
 }

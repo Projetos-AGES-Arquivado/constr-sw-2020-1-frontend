@@ -1,14 +1,31 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './screens/home/home.component'
+
+import {HomeComponent} from './screens/home/home.component'
+import { StandardFormComponent } from './components/standard-form/standard-form.component';
+import { RequestType } from './models/request-type.enum';
+
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'grupo1',
+    component: StandardFormComponent,
+    data: {
+      formModel : {
+        title: "TESTANDERSON",
+        inputs: [],
+        requestType: RequestType.POST,
+        saveEndpoint: "gogogle",
+      }
+    }
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
