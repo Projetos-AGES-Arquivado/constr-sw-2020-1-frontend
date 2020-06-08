@@ -1,10 +1,15 @@
 <div class="chip-list">
+    <h1>{{title}}</h1>
     <ul>
         <li>    
-            <app-chip [label]="'Sala 301'"></app-chip>
+            <app-chip [label]="'Sala 301'" [condition]="condition"></app-chip>
         </li>
         <li> 
-            <app-chip [label]="'Sala 302'"></app-chip>
+            <app-chip [label]="'Sala 302'" [condition]="condition"></app-chip>
         </li>
+        <li> 
+            <app-chip [label]="'Sala 303'" [condition]="condition"></app-chip>
+        </li>
+        <li><button>+</button></li>
     </ul>
 </div>

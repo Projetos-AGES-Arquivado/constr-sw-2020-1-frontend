@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'chip-list',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chip-list.component.scss']
 })
 export class ChipListComponent implements OnInit {
+
+  @Input() title:string
+  @Input() condition:boolean
 
   constructor() { }
 

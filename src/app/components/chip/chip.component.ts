@@ -9,6 +9,7 @@ export class ChipComponent implements OnInit {
 
   constructor() { }
   @Input() label: string;
+  @Input() condition: boolean;
 
   ngOnInit(): void {
   }
