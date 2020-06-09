@@ -15,14 +15,6 @@ const routes: Routes = [
   {
     path: 'grupo1',
     component: StandardFormComponent,
-    data: {
-      formModel : {
-        title: "TESTANDERSON",
-        inputs: [],
-        requestType: RequestType.POST,
-        saveEndpoint: "gogogle",
-      }
-    }
   }
 ];
 
