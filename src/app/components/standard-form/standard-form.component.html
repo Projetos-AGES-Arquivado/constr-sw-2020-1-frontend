@@ -1,19 +1,19 @@
 <h1 class="mat-display-1">{{ formModel.title }}</h1>
 
-  <form #standardForm=ngForm (ngSubmit)="onSubmit(standardForm)">
-    <mat-form-field *ngFor="let textInput of textInputs" appearance="fill">
-      <mat-label>{{ textInput.fieldName }}</mat-label>
-      <input matInput />
+  <form [formGroup]="myForm" #standardForm=ngForm (ngSubmit)="onSubmit()">
+    <mat-form-field *ngFor="let input of textInputs" appearance="fill">
+      <mat-label>{{ input.label? input.label : input.fieldName }}</mat-label>
+      <input matInput [formControlName]="input.fieldName"/>
     </mat-form-field>
 
-    <mat-form-field *ngFor="let dropdownInput of dropdownInputs">
-      <mat-label>{{ dropdownInput.fieldName }}</mat-label>
-      <mat-select matNativeControl required>
+    <mat-form-field *ngFor="let input of dropdownInputs">
+      <mat-label>{{ input.label? input.label : input.fieldName }}</mat-label>
+      <mat-select matNativeControl [formControlName]="input.fieldName">
         <mat-option
-          *ngFor="let option of dropdownInput.dropdownElements; let i = index"
-          [value]="dropdownInput.dropdownElements[i].id"
+          *ngFor="let option of input.dropdownElements; let i = index"
+          [value]="input.dropdownElements[i].name"
         >
-          {{ dropdownInput.dropdownElements[i].name }}
+          {{ input.dropdownElements[i].label ? input.dropdownElements[i].label : input.dropdownElements[i].name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
