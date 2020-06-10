@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import {CARDS} from '../../../MockedCards'
 
@@ -8,15 +8,6 @@ import {CARDS} from '../../../MockedCards'
     styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent{
-    constructor(){}
-    cardList = CARDS
 
-    someMethod(event){
-        console.log(event);
-    }
 
-    newForm(event){
-        console.log(event);
-    }
-};
+export class HomeComponent{};

@@ -1,0 +1,32 @@
+<button class="toggleSidebar" mat-icon-button (click)="toggleSidebar()">
+  <mat-icon>menu</mat-icon>
+</button>
+<mat-drawer mode='side' [opened]="sideBarOpen">
+  
+  
+<mat-nav-list>
+  <div class="profile-card">
+    <div class="header">
+      <h4>thomaspozzer@acad.pucrs.br</h4>
+    </div>
+    <img src="../../../assets/img/thomas.jpeg" alt="usuario">
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <h2  matSubheader>Páginas</h2>
+
+  <ng-container *ngFor="let item of items">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="{{item.routerLink}}">
+      <mat-icon>{{item.icon}}</mat-icon>
+      {{item.label}}
+    </a>
+  </ng-container>
+  <mat-divider></mat-divider>
+
+    <!-- <h2 matSubheader>Horas</h2> -->
+  </mat-nav-list>
+  <mat-drawer-container>
+    <router-outlet></router-outlet>
+  </mat-drawer-container>
+</mat-drawer>

@@ -1,0 +1,27 @@
+:host {
+  .mat-icon {
+    vertical-align: middle;
+  }
+  .toggleSidebar{
+    margin-top: 10px;
+    margin-left: 15px;
+    background-color: #ffffff;
+    color: #000;
+    z-index: 10;
+  }
+
+  .mat-drawer{
+    padding-top: 50px;
+    z-index: 9;
+  }
+}
+.profile-card {
+  text-align: center;
+  padding: 0 20px 20px 20px;
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
