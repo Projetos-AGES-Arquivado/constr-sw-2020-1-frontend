@@ -25,13 +25,13 @@ export class StandardFormComponent implements OnInit {
 
   textInputs: FormInputModel[];
   dropdownInputs: FormInputModel[];
-  chipInpust: FormInputModel[];
+  chipInputs: FormInputModel[];
   myForm: FormGroup;
 
   constructor(private httpClient: HttpClient) {
     this.textInputs = new Array<FormInputModel>();
     this.dropdownInputs = new Array<FormInputModel>();
-    this.chipInpust = new Array<FormInputModel>();
+    this.chipInputs = new Array<FormInputModel>();
   }
 
   ngOnInit(): void {
@@ -62,7 +62,7 @@ export class StandardFormComponent implements OnInit {
           this.dropdownInputs.push(this.formatDropdownElements(input));
           break;
         case InputType.Chip:
-          this.chipInpust.push(input);
+          this.chipInputs.push(input);
           break;
       }
     });
