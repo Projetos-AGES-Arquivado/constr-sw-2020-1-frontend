@@ -10,6 +10,7 @@ import { RequestType } from 'src/app/models/request-type.enum';
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Card } from 'src/Card';
 @Component({
   selector: 'app-standard-form',
   templateUrl: './standard-form.component.html',
@@ -24,13 +25,13 @@ export class StandardFormComponent implements OnInit {
 
   textInputs: FormInputModel[];
   dropdownInputs: FormInputModel[];
-  chipInpust: FormInputModel[];
+  chipInputs: FormInputModel[];
   myForm: FormGroup;
 
   constructor(private httpClient: HttpClient) {
     this.textInputs = new Array<FormInputModel>();
     this.dropdownInputs = new Array<FormInputModel>();
-    this.chipInpust = new Array<FormInputModel>();
+    this.chipInputs = new Array<FormInputModel>();
   }
 
   ngOnInit(): void {
@@ -61,7 +62,7 @@ export class StandardFormComponent implements OnInit {
           this.dropdownInputs.push(this.formatDropdownElements(input));
           break;
         case InputType.Chip:
-          this.chipInpust.push(input);
+          this.chipInputs.push(input);
           break;
       }
     });

@@ -1,9 +1,12 @@
 <h1 class="mat-display-1">{{ formModel.title }}</h1>
-  <form [formGroup]="myForm" #standardForm=ngForm (ngSubmit)="onSubmit()">
+
+  <form [formGroup]="myForm" #standardForm=ngForm>
     <mat-form-field *ngFor="let input of textInputs" appearance="fill">
       <mat-label>{{ input.label? input.label : input.fieldName }}</mat-label>
       <input matInput [formControlName]="input.fieldName"/>
     </mat-form-field>
+
+    <div class="divider"></div>
 
     <mat-form-field *ngFor="let input of dropdownInputs">
       <mat-label>{{ input.label? input.label : input.fieldName }}</mat-label>
@@ -17,5 +20,12 @@
       </mat-select>
     </mat-form-field>
 
-    <button mat-button type="submit" color="primary"> Salvar! </button>
+    <div class="divider"></div>
+
+    <div class="chip-list">
+      <chip-list *ngFor="let chip of chipInputs" [title]="chip.title" [cardList]="chip.cardList" [editionList]="false">
+    </chip-list>
+    </div>
+
+    <button mat-button type="submit" color="primary" (click)="onSubmit()"> Salvar! </button>
   </form>

@@ -1,5 +1,6 @@
 import { FormInputModel } from './form-input.model';
 import { RequestType } from './request-type.enum';
+import { Card } from 'src/Card';
 
 export class FormModel {
   title: string;
