@@ -1,5 +1,4 @@
 <h1 class="mat-display-1">{{ formModel.title }}</h1>
-
   <form [formGroup]="myForm" #standardForm=ngForm (ngSubmit)="onSubmit()">
     <mat-form-field *ngFor="let input of textInputs" appearance="fill">
       <mat-label>{{ input.label? input.label : input.fieldName }}</mat-label>
