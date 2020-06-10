@@ -1,24 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { HomeComponent } from './screens/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppComponent } from './app.component';
 import { PageContentComponent } from './components/page-content/page-content.component';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    PageContentComponent
-  ],
+  declarations: [AppComponent, PageContentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule,
   ],
   providers: [],
-  bootstrap: [HomeComponent]
+  bootstrap: [AppComponent, PageContentComponent],
 })
-export class AppModule { }
+export class AppModule {}
