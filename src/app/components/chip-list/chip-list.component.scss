@@ -1,0 +1,34 @@
+.chip-list{
+    margin-left: 38px;
+}
+
+.chip-list li{
+    float: left;
+}
+
+.chip-list ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chip-list h1{
+    margin-left: 40px;
+    color: #6202EE;
+}
+
+.chip-list button{
+    background-color: #2F80ED;
+    border-radius: 50%;
+    border-width: 0px;
+    height: 50px;
+    width: 50px;
+    color: white;
+    font-size: 40px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.chip-list button:active{
+    background-color: rgb(88, 155, 243);
+}

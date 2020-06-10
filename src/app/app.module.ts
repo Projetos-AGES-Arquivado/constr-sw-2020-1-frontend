@@ -12,11 +12,15 @@ import {MatSelectModule} from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ChipListComponent } from './components/chip-list/chip-list.component';
+import { ChipComponent } from './components/chip/chip.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     StandardFormComponent,
+    ChipListComponent,
+    ChipComponent
   ],
   imports: [
     BrowserModule,
