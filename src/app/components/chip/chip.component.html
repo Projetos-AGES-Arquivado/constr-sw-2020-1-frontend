@@ -1,4 +1,7 @@
-<div class="chip">
+<div [ngClass]="{
+    'chip': !chipSelected,
+    'chip-selected': chipSelected
+}">
     {{label}}
-    <button *ngIf="condition" class="closebtn" onclick="this.parentElement.style.display='none'">&times;</button>
+    <button *ngIf="deletable" class="closebtn" onclick="this.parentElement.style.display='none'">&times;</button>
 </div>

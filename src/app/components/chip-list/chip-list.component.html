@@ -1,15 +1,9 @@
 <div class="chip-list">
     <h1>{{title}}</h1>
     <ul>
-        <li>    
-            <app-chip [label]="'Sala 301'" [condition]="condition"></app-chip>
+        <li *ngFor="let card of cardList" (click)="onSelect(card)">    
+            <app-chip [label]="card.label" [deletable]="editionList"  [chipSelected]="card.selected"></app-chip>
         </li>
-        <li> 
-            <app-chip [label]="'Sala 302'" [condition]="condition"></app-chip>
-        </li>
-        <li> 
-            <app-chip [label]="'Sala 303'" [condition]="condition"></app-chip>
-        </li>
-        <li><button>+</button></li>
+        <li><button (click)="createNewCard()">+</button></li>
     </ul>
 </div>

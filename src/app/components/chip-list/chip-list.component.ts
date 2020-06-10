@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Card } from '../../../Card';
 
 @Component({
   selector: 'chip-list',
@@ -7,8 +8,23 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ChipListComponent implements OnInit {
 
-  @Input() title:string
-  @Input() condition:boolean
+  @Input() cardList:Card[]
+  @Input() title: string
+  @Input() editionList:boolean
+
+  @Output()
+  selection = new EventEmitter<Card[]>();
+  @Output() newCard = new EventEmitter<string>();
+
+
+  onSelect(card: Card): void {
+    card.selected = !card.selected;
+    this.selection.emit(this.cardList);
+  }
+
+  createNewCard(): void {
+    this.newCard.emit("createNewCard")
+  }
 
   constructor() { }
 

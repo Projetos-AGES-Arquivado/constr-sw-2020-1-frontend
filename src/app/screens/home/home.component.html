@@ -8,7 +8,18 @@
   </div>
   <br>
   <br><br><br><br>
+
+
   <div>
-    <chip-list [title]="'Salas'" [condition]="true"></chip-list>
+
+
+    <chip-list [title]="'PRÉDIOS'" [cardList]="cardList" [editionList]="false" [multiSelection]="false"
+      (selection)="someMethod($event)" (newCard)="newForm($event)">
+    </chip-list>
+
+
   </div>
+
+
+
 </section>
