@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { ItensMenu } from "../../model/itens-menu.model";
+import { ItensMenu } from "../../models/itens-menu.model";
 
 @Component({
   selector: 'app-sidenav',
