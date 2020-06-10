@@ -19,4 +19,8 @@ export class HomeComponent{
     newForm(event){
         console.log(event);
     }
+
+    deleteItem(event){
+        console.log(`Deleting item: ${event.uniqueID}`)
+    }
 };

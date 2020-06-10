@@ -13,8 +13,14 @@
   <div>
 
 
-    <chip-list [title]="'PRÉDIOS'" [cardList]="cardList" [editionList]="false"
-      (selection)="someMethod($event)" (newCard)="newForm($event)">
+    <chip-list [title]="'PRÉDIOS'" 
+    [cardList]="cardList" 
+    [editionList]="true" 
+    [multiSelection]="false"
+    (selection)="someMethod($event)" 
+    (newCard)="newForm($event)"
+    (delete)="deleteItem($event)">
+    
     </chip-list>
 
 

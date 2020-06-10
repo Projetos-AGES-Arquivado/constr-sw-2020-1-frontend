@@ -2,7 +2,8 @@
     <h1>{{title}}</h1>
     <ul>
         <li *ngFor="let card of cardList" (click)="onSelect(card)">    
-            <app-chip [label]="card.label" [deletable]="editionList"  [chipSelected]="card.selected"></app-chip>
+            <app-chip [label]="card.label" [deletable]="editionList"  [chipSelected]="card.selected" 
+            (delete)="deleteCard(card)"></app-chip>
         </li>
         <li><button (click)="createNewCard()">+</button></li>
     </ul>

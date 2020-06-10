@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-chip',
@@ -12,7 +12,13 @@ export class ChipComponent implements OnInit {
   @Input() deletable: boolean;
   @Input() chipSelected: boolean;
 
+  @Output() delete = new EventEmitter();
+
+
   ngOnInit(): void {
   }
 
+  deleteCard(){
+    this.delete.emit();
+  }
 }
