@@ -1,5 +1,6 @@
 import { InputType } from './input-type.enum';
 import { RequestType } from './request-type.enum';
+import { Card } from 'src/Card';
 
 export class FormInputModel {
   inputType: InputType;
@@ -8,6 +9,12 @@ export class FormInputModel {
   //required if you want to create a HTML input with a name different of the fieldName property
   label?: string;
   fieldName: string;
+  //required to chipset type of input
+  title?: string
+  //required to chipset type of input
+  cardList?: Card[]
+  //required to chipset type of input
+  editionList? :boolean
 }
 
 export class DropdownElement {

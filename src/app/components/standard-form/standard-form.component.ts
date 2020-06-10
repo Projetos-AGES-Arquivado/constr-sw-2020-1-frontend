@@ -10,6 +10,7 @@ import { RequestType } from 'src/app/models/request-type.enum';
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Card } from 'src/Card';
 @Component({
   selector: 'app-standard-form',
   templateUrl: './standard-form.component.html',
