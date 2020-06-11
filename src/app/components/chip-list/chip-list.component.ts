@@ -19,20 +19,23 @@ export class ChipListComponent implements OnInit {
 
 
   onSelect(card: Card): void {
-    if (this.multiSelection) {
-      card.selected = !card.selected;
-
-    } else {
-      this.cardList.forEach(item => {
-        if (item.uniqueID !== card.uniqueID) {
-          item.selected = false
-        }
-      });
-      card.selected = !card.selected;
+    if (!this.editionList){
+      if (this.multiSelection) {
+        card.selected = !card.selected;
+  
+      } else {
+        this.cardList.forEach(item => {
+          if (item.uniqueID !== card.uniqueID) {
+            item.selected = false
+          }
+        });
+        card.selected = !card.selected;
+  
+      }
+      this.selection.emit(this.cardList);
+  
 
     }
-    this.selection.emit(this.cardList);
-
   }
 
   createNewCard(): void {

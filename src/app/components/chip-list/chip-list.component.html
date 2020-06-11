@@ -5,6 +5,8 @@
             <app-chip [label]="card.label" [deletable]="editionList"  [chipSelected]="card.selected" 
             (delete)="deleteCard(card)"></app-chip>
         </li>
-        <li><button (click)="createNewCard()">+</button></li>
+        <li><button (click)="createNewCard()"
+            *ngIf="editionList"
+        >+</button></li>
     </ul>
 </div>
