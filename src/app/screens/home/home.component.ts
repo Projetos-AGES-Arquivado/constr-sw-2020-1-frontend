@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-
-import { CARDS } from '../../../MockedCards';
+import { CARDS } from '../../../../src/app/screens/grupo-5/MockedCards';
 import { Card } from 'src/Card';
 
 @Component({
@@ -8,18 +7,6 @@ import { Card } from 'src/Card';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
 
-  cardList:Card[]
+export class HomeComponent{};
 
-  constructor() {
-    this.cardList = CARDS;
-  }
-
-  someMethod($event) {
-    console.log($event);
-  }
-  newForm($event) {
-    console.log($event);
-  }
-}

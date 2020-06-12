@@ -10,6 +10,7 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { HomeComponent } from './screens/home/home.component';
+import { Grupo5Component } from './screens/grupo-5/grupo-5.component'
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -24,6 +25,7 @@ import { ChipComponent } from './components/chip/chip.component';
 @NgModule({
   declarations: [
     HomeComponent,
+    Grupo5Component,
     StandardFormComponent,
     ChipListComponent,
     ChipComponent,

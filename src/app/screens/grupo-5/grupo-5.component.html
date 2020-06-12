@@ -1,5 +1,46 @@
-<!-- <home-component></home-component>
-<div>
-    <app-chip></app-chip>
-</div> -->
-<h1>Hello</h1>
+<br>
+  <br><br><br><br>
+
+  <div>
+
+    <h2>Exemplo de lista de seleção simples</h2>
+
+    <chip-list [title]="'Prédios'" 
+    [cardList]="cardList[0]" 
+    [editionList]="false" 
+    [multiSelection]="false"
+    (selection)="cardsSelected($event)" 
+    (newCard)="newForm($event)"
+    (delete)="deleteItem($event)">
+    </chip-list>
+
+    <br><br><br><br><br><br><br><br>
+
+    <h2>Exemplo de lista de seleção múltipla</h2>
+
+    <chip-list [title]="'Salas'" 
+    [cardList]="cardList[1]" 
+    [editionList]="false" 
+    [multiSelection]="true"
+    (selection)="cardsSelected($event)" 
+    (newCard)="newForm($event)"
+    (delete)="deleteItem($event)">
+    </chip-list>
+
+    <br><br><br><br><br><br><br><br>
+
+    <h2>Exemplo de lista de edição</h2>
+
+    <chip-list [title]="'Recursos'" 
+    [cardList]="cardList[2]" 
+    [editionList]="true" 
+    [multiSelection]="false"
+    (selection)="cardsSelected($event)" 
+    (newCard)="newForm($event)"
+    (delete)="deleteItem($event)">
+    
+    </chip-list>
+
+    <br><br><br><br><br><br><br><br>
+
+  </div>

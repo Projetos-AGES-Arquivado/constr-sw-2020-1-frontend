@@ -7,20 +7,5 @@
     <button routerLink="/grupo4" mat-raised-button color="warn">Grupo 4</button>
     <button routerLink="/grupo5" mat-raised-button color="accent">Grupo 5</button>
   </div>
-  <br>
-  <br><br><br><br>
-
-
-  <div>
-
-
-    <chip-list [title]="'PRÉDIOS'" [cardList]="cardList" [editionList]="false"
-      (selection)="someMethod($event)" (newCard)="newForm($event)">
-    </chip-list>
-
-
-  </div>
-
-
-
+  <router-outlet></router-outlet>
 </section>
