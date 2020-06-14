@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { ChipComponent } from './components/chip/chip.component';
+import { TiposRecursosComponent } from './screens/tipos-recursos/tipos-recursos.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ChipComponent } from './components/chip/chip.component';
     ChipListComponent,
     ChipComponent,
     SidenavComponent,
-    StandardFormComponent
+    StandardFormComponent,
+    TiposRecursosComponent
   ],
   imports: [
     BrowserModule,

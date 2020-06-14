@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 import { Grupo5Component } from './screens/grupo-5/grupo-5.component'
-import {HomeComponent} from './screens/home/home.component'
+import { HomeComponent }  from './screens/home/home.component'
+import { TiposRecursosComponent } from './screens/tipos-recursos/tipos-recursos.component';
 import { StandardFormComponent } from './components/standard-form/standard-form.component';
 import { RequestType } from './models/request-type.enum';
 
@@ -11,8 +12,8 @@ import { RequestType } from './models/request-type.enum';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent
+    path: 'grupo2',
+    component: TiposRecursosComponent
   },
   {
     path: 'grupo5',
