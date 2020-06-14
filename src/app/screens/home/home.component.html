@@ -1,4 +1,5 @@
 <section>
+  <app-sidenav></app-sidenav>
   <div class="example-button-row">
     <button routerLink="/grupo1" mat-raised-button>Grupo 1</button>
     <button routerLink="/grupo2" mat-raised-button color="primary">Grupo 2</button>
@@ -6,9 +7,5 @@
     <button routerLink="/grupo4" mat-raised-button color="warn">Grupo 4</button>
     <button routerLink="/grupo5" mat-raised-button color="accent">Grupo 5</button>
   </div>
+  <router-outlet></router-outlet>
 </section>
-
-<app-list description="Reserva 08/06/2020 18:00"></app-list>
-<app-list description="Reserva 15/06/2020 18:00"></app-list>
-<app-list description="Reserva 22/06/2020 18:00"></app-list>
-<router-outlet></router-outlet>
