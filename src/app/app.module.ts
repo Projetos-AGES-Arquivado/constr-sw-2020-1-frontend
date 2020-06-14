@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatDividerModule} from '@angular/material/divider';
 import { MatIconModule} from '@angular/material/icon';
 import { MatSidenavModule} from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list'
+import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,7 +10,7 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { HomeComponent } from './screens/home/home.component';
-import { Grupo5Component } from './screens/grupo-5/grupo-5.component'
+import { Grupo5Component } from './screens/grupo-5/grupo-5.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -21,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { ChipComponent } from './components/chip/chip.component';
-import { TiposRecursosComponent } from './screens/tipos-recursos/tipos-recursos.component';
+import { TypesResourcesComponent } from './screens/types-resources/types-resources.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { TiposRecursosComponent } from './screens/tipos-recursos/tipos-recursos.
     ChipComponent,
     SidenavComponent,
     StandardFormComponent,
-    TiposRecursosComponent
+    TypesResourcesComponent,
   ],
   imports: [
     BrowserModule,
