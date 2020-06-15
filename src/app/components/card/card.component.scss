@@ -1,0 +1,37 @@
+.class-list{
+  padding: 10px;
+  margin: 20px auto;
+  max-width: 700px;
+  height: 110px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: #fafafa;
+  box-shadow: 2px 2px 5px 2px rgb(187,187,187, 0.7);
+}
+
+.class-list .buttons{
+  display: flex;
+}
+
+.class-list .buttons button{
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.button-primary{
+  background: #2f80ed;
+}
+
+.button-warm{
+  background: #EB5757;
+  margin-left: 10px;
+}
+
+
+h2{
+  font-weight: 400;
+}
