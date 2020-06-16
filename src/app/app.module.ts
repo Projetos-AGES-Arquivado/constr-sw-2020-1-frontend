@@ -23,6 +23,7 @@ import { CardComponent } from './components/card/card.component';
 
 import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { ChipComponent } from './components/chip/chip.component';
+import { PrediosComponent } from './components/predios/predios.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ChipComponent } from './components/chip/chip.component';
     SidenavComponent,
     StandardFormComponent,
     CardComponent,
+    PrediosComponent,
   ],
   imports: [
     BrowserModule,
