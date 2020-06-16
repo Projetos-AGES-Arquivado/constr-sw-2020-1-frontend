@@ -1,0 +1,7 @@
+<h1>Prédios</h1>
+<ul>
+    
+    <div *ngFor="let building of buildings">
+        <app-list [description]="building.buildingName" ></app-list>
+    </div>
+</ul>
