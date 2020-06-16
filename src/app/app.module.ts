@@ -21,6 +21,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { ChipComponent } from './components/chip/chip.component';
+import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { StandardModalComponent } from './components/standard-form/modal/standard-modal/standard-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,9 @@ import { ChipComponent } from './components/chip/chip.component';
     ChipListComponent,
     ChipComponent,
     SidenavComponent,
-    StandardFormComponent
+    StandardFormComponent,
+    UserRegistrationComponent,
+    StandardModalComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +56,7 @@ import { ChipComponent } from './components/chip/chip.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatDividerModule,
+    MatDialogModule,
   ],
   bootstrap: [HomeComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

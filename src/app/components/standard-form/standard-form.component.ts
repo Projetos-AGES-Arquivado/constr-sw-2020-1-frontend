@@ -10,7 +10,8 @@ import { RequestType } from 'src/app/models/request-type.enum';
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Card } from 'src/Card';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { StandardModalComponent } from './modal/standard-modal/standard-modal.component';
 @Component({
   selector: 'app-standard-form',
   templateUrl: './standard-form.component.html',
@@ -28,7 +29,7 @@ export class StandardFormComponent implements OnInit {
   chipInputs: FormInputModel[];
   myForm: FormGroup;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, public dialog: MatDialog) {
     this.textInputs = new Array<FormInputModel>();
     this.dropdownInputs = new Array<FormInputModel>();
     this.chipInputs = new Array<FormInputModel>();
@@ -86,31 +87,60 @@ export class StandardFormComponent implements OnInit {
       elements.push({ id: index, name: model.dropdownElements[index].name, label: model.dropdownElements[index].label });
     }
 
+    if(model.addButton) {
+      elements.push({
+        id: 666,
+        name: 'Adicionar...',
+        formModal: model.modalForm,
+      });
+    }
+
     model.dropdownElements = elements;
 
     return model;
   }
 
   onSubmit() {
-    let response: Observable<any>;
+    let request: Observable<any>;
     switch (+this.formModel.requestType) {
       case RequestType.POST:
-        response = this.httpClient.post(this.formModel.saveEndpoint, this.myForm.getRawValue());
+        request = this.httpClient.post(this.formModel.saveEndpoint, this.myForm.getRawValue());
         break;
       case RequestType.PUT:
-        response = this.httpClient.put(this.formModel.saveEndpoint, this.myForm.getRawValue());
+        request = this.httpClient.put(this.formModel.saveEndpoint, this.myForm.getRawValue());
         break;
       case RequestType.PATCH:
-        response = this.httpClient.patch(this.formModel.saveEndpoint, this.myForm.getRawValue());
+        request = this.httpClient.patch(this.formModel.saveEndpoint, this.myForm.getRawValue());
         break;
     }
 
-    response.subscribe(res => {
+    request.subscribe(res => {
+      console.log(res);
       this.response.emit(JSON.stringify(res));
     },
       err => {
+        console.log(err);
         this.response.emit(JSON.stringify(err));
       }
     );
   }
+
+  public openModal(element: DropdownElement) {
+    console.log('element', element);
+    if(element.id === 666) {
+      const dialogConfig = new MatDialogConfig();
+
+      const dialogRef = this.dialog.open(StandardModalComponent, {
+        data: {
+          formValue: element.formModal
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        window.location.reload();
+      });
+    }
+  }
+
 }
+

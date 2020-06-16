@@ -13,7 +13,7 @@
       <mat-select matNativeControl [formControlName]="input.fieldName">
         <mat-option
           *ngFor="let option of input.dropdownElements; let i = index"
-          [value]="input.dropdownElements[i].name"
+          [value]="input.dropdownElements[i].name" (click)="openModal(input.dropdownElements[i])"
         >
           {{ input.dropdownElements[i].label ? input.dropdownElements[i].label : input.dropdownElements[i].name }}
         </mat-option>
