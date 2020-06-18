@@ -1,0 +1,12 @@
+<h1>Turmas de {{discipline.buildingName}}</h1>
+
+<div *ngFor="let card of cards">
+    <chip-list [title]="'Turmas'" 
+    [cardList]="card"
+    [editionList]="false" 
+    [multiSelection]="false"
+    (selection)="cardsSelected($event)" 
+    (newCard)="newForm($event)"
+    (delete)="deleteItem($event)">
+    </chip-list>
+</div>

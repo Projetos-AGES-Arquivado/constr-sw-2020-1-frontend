@@ -2,6 +2,7 @@
 <ul>
     
     <div *ngFor="let building of buildings">
-        <app-list [description]="building.buildingName" ></app-list>
+        <app-list [description]="building.buildingName" (click)="btnClick(building)">
+        </app-list>
     </div>
 </ul>

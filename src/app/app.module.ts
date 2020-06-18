@@ -24,6 +24,7 @@ import { CardComponent } from './components/card/card.component';
 import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { ChipComponent } from './components/chip/chip.component';
 import { DisciplinesScreenComponent } from './screens/disciplines-screen/disciplines-screen.component';
+import { ClassRoomComponent } from './screens/class-room/class-room.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { DisciplinesScreenComponent } from './screens/disciplines-screen/discipl
     StandardFormComponent,
     CardComponent,
     DisciplinesScreenComponent,
+    ClassRoomComponent,
   ],
   imports: [
     BrowserModule,
