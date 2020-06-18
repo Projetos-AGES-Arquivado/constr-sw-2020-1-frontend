@@ -25,6 +25,8 @@ import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { ChipComponent } from './components/chip/chip.component';
 
 
+import { ReservasComponent} from './screens/reservas/reservas.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -35,6 +37,7 @@ import { ChipComponent } from './components/chip/chip.component';
     SidenavComponent,
     StandardFormComponent,
     CardComponent,
+    ReservasComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import {HomeComponent} from './screens/home/home.component';
 import { StandardFormComponent } from './components/standard-form/standard-form.component';
 import { RequestType } from './models/request-type.enum';
 
+import {ReservasComponent} from './screens/reservas/reservas.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'grupo5',
     component: Grupo5Component
+  },
+  {
+    path: 'reservas',
+    component: ReservasComponent
   },
 ];
 
