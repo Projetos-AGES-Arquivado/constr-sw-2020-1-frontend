@@ -27,17 +27,14 @@ export class ClassRoomComponent implements OnInit {
   getClasses() {
     this.disciplineService.getClasses(this.discipline.buildingID).subscribe((data: Room[]) => {
       this.rooms = data
-      this.rooms.forEach((room)=> {
-        const card: Card = {
+
+      this.cards = this.rooms.map((room) =>{
+        return {
           uniqueID: room.roomNumber,
           label: room.roomType,
           selected: false,
         }
-        console.log(room)
-        console.log(card)
-        this.cards.push(card)
       })
-      console.log(this.cards)
     })
   }
 
