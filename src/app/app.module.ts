@@ -23,7 +23,12 @@ import { CardComponent } from './components/card/card.component';
 
 import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { ChipComponent } from './components/chip/chip.component';
+
 import { PrediosComponent } from './components/predios/predios.component';
+import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { StandardModalComponent } from './components/standard-form/modal/standard-modal/standard-modal.component';
+
 
 
 @NgModule({
@@ -35,6 +40,8 @@ import { PrediosComponent } from './components/predios/predios.component';
     ChipComponent,
     SidenavComponent,
     StandardFormComponent,
+    UserRegistrationComponent,
+    StandardModalComponent,
     CardComponent,
     PrediosComponent,
   ],
@@ -56,6 +63,7 @@ import { PrediosComponent } from './components/predios/predios.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatDividerModule,
+    MatDialogModule,
   ],
   bootstrap: [HomeComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

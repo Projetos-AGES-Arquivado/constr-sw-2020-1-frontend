@@ -4,9 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { Grupo5Component } from './screens/grupo-5/grupo-5.component';
 import {HomeComponent} from './screens/home/home.component';
-import { StandardFormComponent } from './components/standard-form/standard-form.component';
-import { RequestType } from './models/request-type.enum';
 import { PrediosComponent } from './components/predios/predios.component';
+import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
 
 
 
@@ -14,6 +13,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'grupo1',
+    component: UserRegistrationComponent
   },
   {
     path: 'grupo5',
