@@ -34,15 +34,15 @@ export class ListRoomsComponent implements OnInit {
 
   async loadRooms() {
     this.rooms = await this.api.listRooms(this.buildingId);
-    console.log(this.rooms);
   }
 
   redirectToEditScreen(room: Room) {
     //
   }
 
-  removeRoom(room: Room) {
-    //
+  async removeRoom(room: Room) {
+    await this.api.removeRoom(this.buildingId, room.roomNumber);
+    this.loadRooms();
   }
 
   goBack() {

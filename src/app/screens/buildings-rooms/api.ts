@@ -7,7 +7,11 @@ export interface Building {
   numberOfRooms: number;
 }
 
-export interface Room {}
+export interface Room {
+  roomNumber: string;
+  roomType: string;
+  roomCapacity: number;
+}
 
 export class BuildingRoomsApi {
   private baseURL: string = 'https://stark-gorge-03313.herokuapp.com';
@@ -44,6 +48,12 @@ export class BuildingRoomsApi {
   async addBuilding(building: Building) {
     await this.httpClient
       .post(`${this.baseURL}/buildings`, building)
+      .toPromise();
+  }
+
+  async removeRoom(buildingID: string, roomId: string): Promise<void> {
+    await this.httpClient
+      .delete(`${this.baseURL}/buildings/${buildingID}/rooms/${roomId}`)
       .toPromise();
   }
 }
