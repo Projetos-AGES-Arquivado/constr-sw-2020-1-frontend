@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BuildingRoomsApi } from '../api';
+import { Building, BuildingRoomsApi } from '../api';
 
 @Component({
   selector: 'list-buildings',
@@ -8,14 +8,14 @@ import { BuildingRoomsApi } from '../api';
 })
 export class ListBuildingsComponent implements OnInit {
   private api: BuildingRoomsApi;
-  buildings: any[] = [];
+
+  @Input() public buildings: Building[] = [];
 
   constructor(httpClient: HttpClient) {
     this.api = new BuildingRoomsApi(httpClient);
   }
 
   async ngOnInit(): Promise<void> {
-    const buildings = await this.api.listBuildings();
-    console.log(buildings);
+    this.buildings = await this.api.listBuildings();
   }
 }
