@@ -30,6 +30,7 @@ import { MatCardModule } from '@angular/material/card';
 import { StandardModalComponent } from './components/standard-form/modal/standard-modal/standard-modal.component';
 import { CommonModule } from '@angular/common';
 import { ListBuildingsComponent } from './screens/buildings-rooms/list-buildings/list-buildings.component';
+import { ListRoomsComponent } from './screens/buildings-rooms/list-rooms/list-rooms.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ListBuildingsComponent } from './screens/buildings-rooms/list-buildings
     CardComponent,
     PrediosComponent,
     ListBuildingsComponent,
+    ListRoomsComponent,
   ],
   imports: [
     CommonModule,

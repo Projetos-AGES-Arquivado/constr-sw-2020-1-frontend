@@ -12,8 +12,11 @@
       <p>Número de salas: {{ building.numberOfRooms }}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>EDITAR</button>
-      <button mat-button>EXCLUIR</button>
+      <button mat-button (click)="redirectToEditScreen(building)">
+        EDITAR
+      </button>
+      <button mat-button (click)="removeBuilding(building)">EXCLUIR</button>
+      <button mat-button (click)="redirectToRoomsScreen(building)">SALAS</button>
     </mat-card-actions>
   </mat-card>
 </div>
