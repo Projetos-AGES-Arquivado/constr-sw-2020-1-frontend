@@ -18,4 +18,11 @@ export class BuildingRoomsApi {
       .toPromise();
     return response as Building[];
   }
+
+  async addBuilding(building: Building) {
+    await this.httpClient
+      .post(`${this.baseURL}/buildings`, building)
+      .toPromise();
+  }
+
 }
