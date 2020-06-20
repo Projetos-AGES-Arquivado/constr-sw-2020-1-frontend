@@ -17,4 +17,4 @@
     </mat-form-field>
     <button mat-button>SALVAR</button>
 </div> -->
-<app-standard-form [formModel]="buildingModel"></app-standard-form>
+<app-standard-form [formModel]="buildingModel" (response)="onCreate($event)"></app-standard-form>

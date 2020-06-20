@@ -25,12 +25,14 @@ export class StandardFormComponent implements OnInit {
   response = new EventEmitter();
 
   textInputs: FormInputModel[];
+  numberInputs: FormInputModel[];
   dropdownInputs: FormInputModel[];
   chipInputs: FormInputModel[];
   myForm: FormGroup;
 
   constructor(private httpClient: HttpClient, public dialog: MatDialog) {
     this.textInputs = new Array<FormInputModel>();
+    this.numberInputs = new Array<FormInputModel>();
     this.dropdownInputs = new Array<FormInputModel>();
     this.chipInputs = new Array<FormInputModel>();
   }
@@ -39,11 +41,11 @@ export class StandardFormComponent implements OnInit {
     this.validateInputs()
       ? this.buildInputs()
       : console.log('Invalid FormModel');
-    console.log(this.textInputs);
 
     const group = {};
     this.formModel.inputs.forEach((input) => {
-      group[input.fieldName] = new FormControl('');
+      const formControl = new FormControl('');
+      group[input.fieldName] = formControl;
     });
     this.myForm = new FormGroup(group);
   }
@@ -58,6 +60,9 @@ export class StandardFormComponent implements OnInit {
       switch (+input.inputType) {
         case InputType.Text:
           this.textInputs.push(input);
+          break;
+        case InputType.Number:
+          this.numberInputs.push(input);
           break;
         case InputType.Dropdown:
           this.dropdownInputs.push(this.formatDropdownElements(input));
@@ -84,10 +89,14 @@ export class StandardFormComponent implements OnInit {
     const elements = new Array<DropdownElement>();
 
     for (let index = 0; index < model.dropdownElements.length; index++) {
-      elements.push({ id: index, name: model.dropdownElements[index].name, label: model.dropdownElements[index].label });
+      elements.push({
+        id: index,
+        name: model.dropdownElements[index].name,
+        label: model.dropdownElements[index].label,
+      });
     }
 
-    if(model.addButton) {
+    if (model.addButton) {
       elements.push({
         id: 666,
         name: 'Adicionar...',
@@ -104,21 +113,31 @@ export class StandardFormComponent implements OnInit {
     let request: Observable<any>;
     switch (+this.formModel.requestType) {
       case RequestType.POST:
-        request = this.httpClient.post(this.formModel.saveEndpoint, this.myForm.getRawValue());
+        request = this.httpClient.post(
+          this.formModel.saveEndpoint,
+          this.myForm.getRawValue()
+        );
         break;
       case RequestType.PUT:
-        request = this.httpClient.put(this.formModel.saveEndpoint, this.myForm.getRawValue());
+        request = this.httpClient.put(
+          this.formModel.saveEndpoint,
+          this.myForm.getRawValue()
+        );
         break;
       case RequestType.PATCH:
-        request = this.httpClient.patch(this.formModel.saveEndpoint, this.myForm.getRawValue());
+        request = this.httpClient.patch(
+          this.formModel.saveEndpoint,
+          this.myForm.getRawValue()
+        );
         break;
     }
 
-    request.subscribe(res => {
-      console.log(res);
-      this.response.emit(JSON.stringify(res));
-    },
-      err => {
+    request.subscribe(
+      (res) => {
+        console.log(res);
+        this.response.emit(JSON.stringify(res));
+      },
+      (err) => {
         console.log(err);
         this.response.emit(JSON.stringify(err));
       }
@@ -127,20 +146,18 @@ export class StandardFormComponent implements OnInit {
 
   public openModal(element: DropdownElement) {
     console.log('element', element);
-    if(element.id === 666) {
+    if (element.id === 666) {
       const dialogConfig = new MatDialogConfig();
 
       const dialogRef = this.dialog.open(StandardModalComponent, {
         data: {
-          formValue: element.formModal
-        }
+          formValue: element.formModal,
+        },
       });
 
-      dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe((result) => {
         window.location.reload();
       });
     }
   }
-
 }
-

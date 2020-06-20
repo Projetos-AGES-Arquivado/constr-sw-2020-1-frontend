@@ -6,6 +6,11 @@
       <input matInput [formControlName]="input.fieldName"/>
     </mat-form-field>
 
+    <mat-form-field *ngFor="let input of numberInputs" appearance="fill">
+      <mat-label>{{ input.label? input.label : input.fieldName }}</mat-label>
+      <input matInput [formControlName]="input.fieldName" type="number"/>
+    </mat-form-field>
+
     <div class="divider"></div>
 
     <mat-form-field *ngFor="let input of dropdownInputs">

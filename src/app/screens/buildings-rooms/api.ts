@@ -25,7 +25,7 @@ export class BuildingRoomsApi {
     const response = await this.httpClient
       .get(`${this.baseURL}/buildings`)
       .toPromise();
-    return response as Building[];
+    return (response as Building[]).filter((building) => building.buildingID);
   }
 
   async removeBuilding(buildingID: string): Promise<void> {
