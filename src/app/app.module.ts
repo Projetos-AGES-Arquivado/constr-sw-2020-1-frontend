@@ -31,6 +31,7 @@ import { StandardModalComponent } from './components/standard-form/modal/standar
 import { CommonModule } from '@angular/common';
 import { ListBuildingsComponent } from './screens/buildings-rooms/list-buildings/list-buildings.component';
 import { ListRoomsComponent } from './screens/buildings-rooms/list-rooms/list-rooms.component';
+import { AddBuildingComponent } from './screens/buildings-rooms/add-building/add-building.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ListRoomsComponent } from './screens/buildings-rooms/list-rooms/list-ro
     PrediosComponent,
     ListBuildingsComponent,
     ListRoomsComponent,
+    AddBuildingComponent,
   ],
   imports: [
     CommonModule,

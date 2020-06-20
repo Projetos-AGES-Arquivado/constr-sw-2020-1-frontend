@@ -6,6 +6,7 @@ import { HomeComponent } from './screens/home/home.component';
 import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
 import { ListBuildingsComponent } from './screens/buildings-rooms/list-buildings/list-buildings.component';
 import { ListRoomsComponent } from './screens/buildings-rooms/list-rooms/list-rooms.component';
+import { AddBuildingComponent } from './screens/buildings-rooms/add-building/add-building.component';
 
 const routes: Routes = [
   {
@@ -31,7 +32,7 @@ const routes: Routes = [
   {
     path: 'buildings/create',
     component: AddBuildingComponent,
-  }
+  },
 ];
 
 @NgModule({

@@ -29,6 +29,10 @@ export class ListBuildingsComponent implements OnInit {
     await this.loadBuildings();
   }
 
+  redirectToNewScreen() {
+    this.router.navigateByUrl(`/buildings/create`);
+  }
+
   redirectToEditScreen(buiding: Building) {
     // redirect to edit screen
   }

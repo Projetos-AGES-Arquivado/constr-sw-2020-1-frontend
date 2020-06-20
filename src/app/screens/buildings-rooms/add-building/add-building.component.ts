@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Building, BuildingRoomsApi } from '../api';
+import { BUILDING_REGISTRATION_MODEL } from './buildingModel';
 
 @Component({
   selector: 'add-building',
@@ -8,7 +9,8 @@ import { Building, BuildingRoomsApi } from '../api';
 })
 export class AddBuildingComponent implements OnInit {
   private api: BuildingRoomsApi;
-
+  buildingModel = BUILDING_REGISTRATION_MODEL;
+  
   @Input() public building: Building;
 
   constructor(httpClient: HttpClient) {
@@ -16,6 +18,6 @@ export class AddBuildingComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.api.addBuilding(this.building);
+    // this.api.addBuilding(this.building);
   }
 }

@@ -1,4 +1,9 @@
-<button mat-raised-button color="primary" style="margin: 20px;">
+<button
+  mat-raised-button
+  color="primary"
+  style="margin: 20px;"
+  (click)="redirectToNewScreen()"
+>
   NOVO PRÉDIO
 </button>
 <div *ngFor="let building of buildings">
@@ -16,7 +21,9 @@
         EDITAR
       </button>
       <button mat-button (click)="removeBuilding(building)">EXCLUIR</button>
-      <button mat-button (click)="redirectToRoomsScreen(building)">SALAS</button>
+      <button mat-button (click)="redirectToRoomsScreen(building)">
+        SALAS
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>
