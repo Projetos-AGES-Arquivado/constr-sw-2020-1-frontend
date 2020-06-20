@@ -7,9 +7,7 @@ export interface Building {
   numberOfRooms: number;
 }
 
-export interface Room {
-
-}
+export interface Room {}
 
 export class BuildingRoomsApi {
   private baseURL: string = 'https://stark-gorge-03313.herokuapp.com';
@@ -41,5 +39,11 @@ export class BuildingRoomsApi {
       .get(`${this.baseURL}/buildings/${buildingId}/rooms`)
       .toPromise();
     return response as Room[];
+  }
+
+  async addBuilding(building: Building) {
+    await this.httpClient
+      .post(`${this.baseURL}/buildings`, building)
+      .toPromise();
   }
 }
