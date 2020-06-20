@@ -32,6 +32,7 @@ import { CommonModule } from '@angular/common';
 import { ListBuildingsComponent } from './screens/buildings-rooms/list-buildings/list-buildings.component';
 import { ListRoomsComponent } from './screens/buildings-rooms/list-rooms/list-rooms.component';
 import { AddBuildingComponent } from './screens/buildings-rooms/add-building/add-building.component';
+import { AddRoomComponent } from './screens/buildings-rooms/add-room/add-room.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AddBuildingComponent } from './screens/buildings-rooms/add-building/add
     ListBuildingsComponent,
     ListRoomsComponent,
     AddBuildingComponent,
+    AddRoomComponent
   ],
   imports: [
     CommonModule,

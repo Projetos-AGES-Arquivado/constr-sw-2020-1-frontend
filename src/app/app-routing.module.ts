@@ -7,6 +7,7 @@ import { UserRegistrationComponent } from './screens/grupo-1/user-registration/u
 import { ListBuildingsComponent } from './screens/buildings-rooms/list-buildings/list-buildings.component';
 import { ListRoomsComponent } from './screens/buildings-rooms/list-rooms/list-rooms.component';
 import { AddBuildingComponent } from './screens/buildings-rooms/add-building/add-building.component';
+import { AddRoomComponent } from './screens/buildings-rooms/add-room/add-room.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
     path: 'buildings/create',
     component: AddBuildingComponent,
   },
+  {
+    path: 'buildings/:id/rooms/create',
+    component: AddRoomComponent,
+  }
 ];
 
 @NgModule({
