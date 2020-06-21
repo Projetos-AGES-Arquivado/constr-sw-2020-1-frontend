@@ -1,6 +1,7 @@
 import { InputType } from './input-type.enum';
 import { RequestType } from './request-type.enum';
 import { Card } from 'src/Card';
+import { FormModel } from './form-interface';
 
 export class FormInputModel {
   inputType: InputType;
@@ -10,11 +11,13 @@ export class FormInputModel {
   label?: string;
   fieldName: string;
   //required to chipset type of input
-  title?: string
+  title?: string;
   //required to chipset type of input
-  cardList?: Card[]
+  cardList?: Card[];
   //required to chipset type of input
-  editionList? :boolean
+  editionList?: boolean;
+  addButton?: boolean;
+  modalForm?: FormModel;
 }
 
 export class DropdownElement {
@@ -27,4 +30,5 @@ export class DropdownElement {
   //show on the dropdown the Professor's Name
   //send on the API the professor's UUID
   label?: string;
+  formModal?: FormModel;
 }

@@ -7,6 +7,7 @@ import { HomeComponent }  from './screens/home/home.component'
 import { TypesResourcesComponent } from './screens/types-resources/types-resources.component';
 import { StandardFormComponent } from './components/standard-form/standard-form.component';
 import { RequestType } from './models/request-type.enum';
+import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
 
 
 
@@ -27,6 +28,10 @@ const routes: Routes = [
   //   path: 'grupo4',
   //   component: 
   // },
+  {
+    path: 'grupo1',
+    component: UserRegistrationComponent
+  },
   {
     path: 'grupo5',
     component: Grupo5Component
