@@ -8,16 +8,16 @@ import { StandardFormComponent } from './components/standard-form/standard-form.
 import { RequestType } from './models/request-type.enum';
 import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
 
-
+import { TypesResourcesComponent } from './screens/types-resources/types-resources/types-resources.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
     path: 'grupo1',
     component: UserRegistrationComponent
+  },
+  {
+    path: 'grupo2',
+    component: TypesResourcesComponent
   },
   {
     path: 'grupo5',

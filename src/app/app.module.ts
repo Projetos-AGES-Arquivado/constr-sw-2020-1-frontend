@@ -27,12 +27,13 @@ import { UserRegistrationComponent } from './screens/grupo-1/user-registration/u
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { StandardModalComponent } from './components/standard-form/modal/standard-modal/standard-modal.component';
-
+import { TypesResourcesComponent } from './screens/types-resources/types-resources/types-resources.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     Grupo5Component,
+    TypesResourcesComponent,
     StandardFormComponent,
     ChipListComponent,
     ChipComponent,
