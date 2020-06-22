@@ -12,9 +12,19 @@ export class TypesResourcesComponent implements OnInit {
   constructor(private typesResourcesService: TypesResourcesService) { }
 
   resources: Resources[];
+  resourcesTypes: any[];
+  cols: any[];
 
   ngOnInit() {
+    this.getResourcesTypes();
     this.getResources();
+  }
+
+  getResourcesTypes(){
+    this.typesResourcesService.getResourcesTypes().subscribe((data: any[]) => {
+      this.resourcesTypes = data;
+      console.log("peace2", this.resourcesTypes)
+    });
   }
 
   getResources() {

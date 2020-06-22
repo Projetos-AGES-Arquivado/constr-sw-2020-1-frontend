@@ -1,1 +1,16 @@
+<div class="contentTypes">
+  <h1 class="titleResourceTypes">Tipos de Recursos</h1>
+  <div *ngFor="let type of resourcesTypes">
+    <app-list [description]="type.type"></app-list>
+  </div>
+</div>
 
+<br><br><br><br>
+
+<div>
+  <chip-list [title]="'Recursos'" 
+    [cardList]="resources[0]" 
+    [editionList]="true" 
+    [multiSelection]="false">
+  </chip-list>
+</div>

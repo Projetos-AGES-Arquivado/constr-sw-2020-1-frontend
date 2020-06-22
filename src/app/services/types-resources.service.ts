@@ -18,6 +18,14 @@ export class TypesResourcesService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
+  // Obtem todos os tipos
+  getResourcesTypes(): Observable<Resources[]> {
+    return this.httpClient.get<Resources[]>(this.url + '/resources-types')
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
+
 
   // Obtem todos os prédios
   getResources(): Observable<Resources[]> {
