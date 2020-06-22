@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TypesResourcesService } from '../../../services/types-resources.service'
-import { Resources } from '../../../models/resources.model';
+import { TypesResourcesService } from '../../services/types-resources.service'
+import { Resources } from '../../models/resources.model';
 
 @Component({
   selector: 'app-types-resources',
