@@ -15,7 +15,7 @@
 
 <div class="container">
     <chip-list *ngIf="classSelected" [title]="'Aulas'" [cardList]="lessonCards" [editionList]="editionMode"
-        [multiSelection]="true" (selection)="lessonCardsSelected($event)" (newCard)="newForm($event)"
+        [multiSelection]="true" (selection)="lessonCardsSelected($event)" (newCard)="newClassForm($event)"
         (delete)="deleteLesson($event)">
     </chip-list>
 </div>

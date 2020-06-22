@@ -89,12 +89,17 @@ export class ClassRoomComponent implements OnInit {
   }
 
   newForm(event) {
+    alert('new form clicked')
+  }
+
+  newClassForm(event) {
+    //DADO ABAIXO MOCADO. DEVEMOS ENCAMINHAR PARA UM FORM, E O FORM FAZER ESSA REQUISÇÃO CONFORME OS DADOS NELE
     const newClass = {
       date: "2020-06-06T17:59:19.534Z",
       class_id: this.selectedClassId,
     }
     this.disciplineService.postLesson(newClass).subscribe(() => {
-      alert('post ok?')
+      alert('nova aula adicionada')
     });
   }
 
