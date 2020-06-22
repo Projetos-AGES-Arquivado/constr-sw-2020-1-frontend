@@ -53,6 +53,15 @@ export class DisciplinesService {
       retry(2),
       catchError(this.handleError))
   }
+  
+  deleteLesson(lessonID:string) {
+    return this.httpClient.delete(this.url + '/lessons/' + lessonID, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+
+  }
 
   // Manipulação de erros
   handleError(error: HttpErrorResponse) {

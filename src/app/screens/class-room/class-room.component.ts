@@ -34,7 +34,7 @@ export class ClassRoomComponent implements OnInit {
     this.cards = []
   }
 
-  changeEdition(e){
+  changeEdition(e) {
     this.editionMode = e.target.checked
   }
 
@@ -42,7 +42,7 @@ export class ClassRoomComponent implements OnInit {
     this.disciplineService.getClasses(this.discipline.id).subscribe((data: DisciplineClass[]) => {
       this.disciplineClasses = data
 
-      this.cards = this.disciplineClasses.map((disciplineClass) =>{
+      this.cards = this.disciplineClasses.map((disciplineClass) => {
         return {
           uniqueID: disciplineClass.id,
           label: `${disciplineClass.number}`,
@@ -68,41 +68,49 @@ export class ClassRoomComponent implements OnInit {
     })
   }
 
-  cardsSelected(event: Card []){
+  cardsSelected(event: Card[]) {
     let classID = event[0].uniqueID
-    if (event[0].selected){
+    if (event[0].selected) {
       this.getLessons(classID);
     }
-    else{
+    else {
       this.classSelected = false
     }
-}
-
-lessonCardsSelected(event: Card []){
-  let res = ""
-  event.forEach(item => {
-      if (item.selected){
-          res += `${item.label}; `
-      }
-  });
-  alert(`Itens selecionados: ${res}`);
-}
-
-newForm(event){
-  const newClass = {
-    date: "2020-06-06T17:59:19.534Z",
-    class_id: this.selectedClassId,
   }
-  this.disciplineService.postLesson(newClass).subscribe(() => {
-    alert('post ok?')
-  });
-}
 
-deleteItem(event: Card){
+  lessonCardsSelected(event: Card[]) {
+    let res = ""
+    event.forEach(item => {
+      if (item.selected) {
+        res += `${item.label}; `
+      }
+    });
+    alert(`Itens selecionados: ${res}`);
+  }
+
+  newForm(event) {
+    const newClass = {
+      date: "2020-06-06T17:59:19.534Z",
+      class_id: this.selectedClassId,
+    }
+    this.disciplineService.postLesson(newClass).subscribe(() => {
+      alert('post ok?')
+    });
+  }
+
+  deleteLesson(event: Card) {
+    if (confirm(`deletar ${event.label}?`)) {
+      this.disciplineService.deleteLesson(event.uniqueID).subscribe(() => {
+        this.getLessons(this.classSelected);
+      });
+
+    }
+  }
+
+  deleteItem(event: Card){
     if (confirm(`deletar ${event.label}?`)){
         alert(`item de ID: ${event.uniqueID} deletado`)
-    }
-    
+    }   
 }
 
 }
