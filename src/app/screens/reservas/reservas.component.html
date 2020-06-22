@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="header">
+    <h1>Reservas</h1>
+    <button (click)="showForm()" ><span [ngClass]="exibiForm ? 'hide' : 'show'"></span> Reservas</button>
+
+  </div>
+  <div class="form" *ngIf="exibiForm">
+    <app-standard-form [formModel]="form"></app-standard-form>
+  </div>
+  <div class="cards">
+    <app-list [cards]="cards" (eventEmmiter)="eventEmmiter($event)" ></app-list>
+  </div>
+
+</div>
+
