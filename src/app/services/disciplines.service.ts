@@ -45,6 +45,15 @@ export class DisciplinesService {
         catchError(this.handleError))
   }
 
+  postLesson(lesson): Observable<Lesson> {
+    const currentLesson:Lesson = lesson;
+    console.log(JSON.stringify(currentLesson))
+    return this.httpClient.post<Lesson>(this.url + '/lessons', JSON.stringify(currentLesson), this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError))
+  }
+
   // Manipulação de erros
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';

@@ -23,6 +23,7 @@ export class ClassRoomComponent implements OnInit {
   cards: Card[]
   lessonCards: Card[]
   classSelected: boolean
+  selectedClassId: string
   editionMode: boolean
 
   ngOnInit(): void {
@@ -63,6 +64,7 @@ export class ClassRoomComponent implements OnInit {
         }
       })
       this.classSelected = true
+      this.selectedClassId = classID
     })
   }
 
@@ -87,7 +89,13 @@ lessonCardsSelected(event: Card []){
 }
 
 newForm(event){
-    alert(`Disparar novo form`)
+  const newClass = {
+    date: "2020-06-06T17:59:19.534Z",
+    class_id: this.selectedClassId,
+  }
+  this.disciplineService.postLesson(newClass).subscribe(() => {
+    alert('post ok?')
+  });
 }
 
 deleteItem(event: Card){
