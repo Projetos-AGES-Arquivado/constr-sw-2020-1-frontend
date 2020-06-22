@@ -1,31 +1,44 @@
 <h1 class="mat-display-1">{{ formModel.title }}</h1>
 
-  <form [formGroup]="myForm" #standardForm=ngForm>
-    <mat-form-field *ngFor="let input of textInputs" appearance="fill">
-      <mat-label>{{ input.label? input.label : input.fieldName }}</mat-label>
-      <input matInput [formControlName]="input.fieldName"/>
-    </mat-form-field>
+<form [formGroup]="myForm" #standardForm="ngForm">
+  <mat-form-field *ngFor="let input of textInputs" appearance="fill">
+    <mat-label>{{ input.label ? input.label : input.fieldName }}</mat-label>
+    <input matInput [formControlName]="input.fieldName" />
+  </mat-form-field>
 
-    <div class="divider"></div>
+  <div class="divider"></div>
 
-    <mat-form-field *ngFor="let input of dropdownInputs">
-      <mat-label>{{ input.label? input.label : input.fieldName }}</mat-label>
-      <mat-select matNativeControl [formControlName]="input.fieldName">
-        <mat-option
-          *ngFor="let option of input.dropdownElements; let i = index"
-          [value]="input.dropdownElements[i].name" (click)="openModal(input.dropdownElements[i])"
-        >
-          {{ input.dropdownElements[i].label ? input.dropdownElements[i].label : input.dropdownElements[i].name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+  <mat-form-field *ngFor="let input of dropdownInputs">
+    <mat-label>{{ input.label ? input.label : input.fieldName }}</mat-label>
+    <mat-select matNativeControl [formControlName]="input.fieldName" [(ngModel)]="input.standardValue">
+      <mat-option
+        *ngFor="let option of input.dropdownElements; let i = index"
+        [value]="input.dropdownElements[i].name"
+        (click)="openModal(input.dropdownElements[i])"
+      >
+        {{
+          input.dropdownElements[i].label
+            ? input.dropdownElements[i].label
+            : input.dropdownElements[i].name
+        }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <div class="divider"></div>
+  <div class="divider"></div>
 
-    <div class="chip-list">
-      <chip-list *ngFor="let chip of chipInputs" [title]="chip.title" [cardList]="chip.cardList" [editionList]="false">
+  <div class="chip-list">
+    <chip-list
+      *ngFor="let chip of chipInputs"
+      [title]="chip.title"
+      [cardList]="chip.cardList"
+      [editionList]="chip.editionList"
+      [multiSelection]="chip.multiSelection"
+    >
     </chip-list>
-    </div>
+  </div>
 
-    <button mat-button type="submit" color="primary" (click)="onSubmit()"> Salvar! </button>
-  </form>
+  <button mat-button type="submit" color="primary" (click)="onSubmit()">
+    Salvar!
+  </button>
+</form>
