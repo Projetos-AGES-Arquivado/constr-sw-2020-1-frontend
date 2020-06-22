@@ -3,6 +3,9 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Building } from '../models/Building';
+import { Discipline } from '../models/Discipline'
+import { DisciplineClass } from '../models/DisciplineClass';
+import { Lesson } from '../models/Lesson';
 import { Room } from '../models/Room';
 
 @Injectable({
@@ -10,7 +13,7 @@ import { Room } from '../models/Room';
 })
 export class DisciplinesService {
 
-  url = 'https://stark-gorge-03313.herokuapp.com'; 
+  url = 'http://18.230.151.22:3000'; 
 
   // injetando o HttpClient
   constructor(private httpClient: HttpClient) { }
@@ -21,16 +24,22 @@ export class DisciplinesService {
   }
 
   // Obtem todos os prédios
-  getBuilding(): Observable<Building[]> {
-    return this.httpClient.get<Building[]>(this.url + '/buildings')
+  getDiscipline(): Observable<Discipline[]> {
+    return this.httpClient.get<Discipline[]>(this.url + '/courses')
       .pipe(
         retry(2),
         catchError(this.handleError))
   }
 
-  getClasses(disciplineID): Observable<Room[]> {
-    console.log(this.url + `/buildings/${disciplineID}/rooms`)
-    return this.httpClient.get<Room[]>(this.url + `/buildings/${disciplineID}/rooms`)
+  getClasses(disciplineID): Observable<DisciplineClass[]> {
+    return this.httpClient.get<DisciplineClass[]>(this.url + `/classes?course=${disciplineID}`)
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
+
+  getLessons(classID): Observable<Lesson[]> {
+    return this.httpClient.get<Lesson[]>(this.url + `/lessons?class_id=${classID}`)
       .pipe(
         retry(2),
         catchError(this.handleError))

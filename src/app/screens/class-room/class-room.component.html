@@ -1,10 +1,21 @@
-<h1>Turmas de {{discipline.buildingName}}</h1>
+<h1 style="margin-left: 300px; margin-top: 50px;">Turmas de {{discipline.name}}</h1>
 
-    <chip-list [title]="'Turmas'" 
-    [cardList]="cards"
-    [editionList]="false" 
-    [multiSelection]="true"
-    (selection)="cardsSelected($event)" 
-    (newCard)="newForm($event)"
-    (delete)="deleteItem($event)">
+<div class="edition-container">
+    <p>Modo edição </p>
+    <label class="switch">
+        <input type="checkbox" (change)="changeEdition($event)">
+        <span class="slider round"></span>
+    </label>
+</div>
+<div class="container">
+    <chip-list [title]="'Turmas'" [cardList]="cards" [editionList]="editionMode" [multiSelection]="true"
+        (selection)="cardsSelected($event)" (newCard)="newForm($event)" (delete)="deleteItem($event)">
     </chip-list>
+</div>
+
+<div class="container">
+    <chip-list *ngIf="classSelected" [title]="'Aulas'" [cardList]="lessonCards" [editionList]="editionMode"
+        [multiSelection]="true" (selection)="lessonCardsSelected($event)" (newCard)="newForm($event)"
+        (delete)="deleteItem($event)">
+    </chip-list>
+</div>

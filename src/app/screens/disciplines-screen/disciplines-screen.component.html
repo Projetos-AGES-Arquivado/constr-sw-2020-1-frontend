@@ -1,8 +1,8 @@
 <h1>Prédios</h1>
 <ul>
     
-    <div *ngFor="let building of buildings">
-        <app-list [description]="building.buildingName" (click)="btnClick(building)">
+    <div *ngFor="let discipline of disciplines">
+        <app-list [description]="discipline.name" (click)="btnClick(discipline)">
         </app-list>
     </div>
 </ul>

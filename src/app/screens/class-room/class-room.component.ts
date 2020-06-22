@@ -4,6 +4,9 @@ import { Room } from '../../models/Room';
 import { DisciplinesService } from '../../services/disciplines.service';
 import { ChipListComponent } from '../../components/chip-list/chip-list.component'
 import { Card } from '../../../Card'
+import { DisciplineClass } from 'src/app/models/DisciplineClass';
+import { Discipline } from 'src/app/models/Discipline';
+import { Lesson } from 'src/app/models/Lesson';
 
 @Component({
   selector: 'app-class-room',
@@ -14,38 +17,73 @@ export class ClassRoomComponent implements OnInit {
 
   constructor(private disciplineService: DisciplinesService) { }
 
-  discipline: Building //MUDAR PARA MODEL DAS DISCIPLINAS
-  rooms: Room[]
+  discipline: Discipline
+  disciplineClasses: DisciplineClass[]
+  lessons: Lesson[]
   cards: Card[]
+  lessonCards: Card[]
+  classSelected: boolean
+  editionMode: boolean
 
   ngOnInit(): void {
+    this.classSelected = false
+    this.editionMode = false
     this.discipline = JSON.parse(sessionStorage.getItem('disciplineID'));
     this.getClasses();
     this.cards = []
   }
 
-  getClasses() {
-    this.disciplineService.getClasses(this.discipline.buildingID).subscribe((data: Room[]) => {
-      this.rooms = data
+  changeEdition(e){
+    this.editionMode = e.target.checked
+  }
 
-      this.cards = this.rooms.map((room) =>{
+  getClasses() {
+    this.disciplineService.getClasses(this.discipline.id).subscribe((data: DisciplineClass[]) => {
+      this.disciplineClasses = data
+
+      this.cards = this.disciplineClasses.map((disciplineClass) =>{
         return {
-          uniqueID: room.roomNumber,
-          label: room.roomType,
+          uniqueID: disciplineClass.id,
+          label: `${disciplineClass.number}`,
           selected: false,
         }
       })
     })
   }
 
-  cardsSelected(event: Card []){
-    let res = ""
-    event.forEach(item => {
-        if (item.selected){
-            res += `${item.label}; `
+  getLessons(classID) {
+    this.disciplineService.getLessons(classID).subscribe((data: Lesson[]) => {
+      this.lessons = data;
+
+      this.lessonCards = this.lessons.map((lesson) => {
+        return {
+          uniqueID: lesson.id,
+          label: `${lesson.date}`,
+          selected: false,
         }
-    });
-    alert(`Itens selecionados: ${res}`);
+      })
+      this.classSelected = true
+    })
+  }
+
+  cardsSelected(event: Card []){
+    let classID = event[0].uniqueID
+    if (event[0].selected){
+      this.getLessons(classID);
+    }
+    else{
+      this.classSelected = false
+    }
+}
+
+lessonCardsSelected(event: Card []){
+  let res = ""
+  event.forEach(item => {
+      if (item.selected){
+          res += `${item.label}; `
+      }
+  });
+  alert(`Itens selecionados: ${res}`);
 }
 
 newForm(event){

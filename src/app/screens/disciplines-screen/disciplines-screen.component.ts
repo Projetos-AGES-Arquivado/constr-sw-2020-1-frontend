@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { DisciplinesService } from '../../services/disciplines.service';
 import { Building } from '../../models/Building';
+import { Discipline } from '../../models/Discipline'
 import { CardComponent } from '../../components/card/card.component'
 import { Router } from '@angular/router';
 
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class DisciplinesScreenComponent implements OnInit {
 
   buildings: Building[];
+  disciplines: Discipline[];
 
   constructor(private disciplineService: DisciplinesService, private router: Router) { }
 
@@ -21,9 +23,9 @@ export class DisciplinesScreenComponent implements OnInit {
   }
 
   getDisciplines() {
-    this.disciplineService.getBuilding().subscribe((data: Building[]) => {
-      this.buildings = data
-      console.log(this.buildings)
+    this.disciplineService.getDiscipline().subscribe((data: Discipline[]) => {
+      this.disciplines = data
+      console.log(this.disciplines)
     });
 
   }
