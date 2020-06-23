@@ -1,21 +1,31 @@
-<h1 style="margin-left: 300px; margin-top: 50px;">Turmas de {{discipline.name}}</h1>
-
-<div class="edition-container">
-    <p>Modo edição </p>
-    <label class="switch">
-        <input type="checkbox" (change)="changeEdition($event)">
-        <span class="slider round"></span>
-    </label>
-</div>
 <div class="container">
-    <chip-list [title]="'Turmas'" [cardList]="cards" [editionList]="editionMode" [multiSelection]="true"
-        (selection)="cardsSelected($event)" (newCard)="newForm($event)" (delete)="deleteItem($event)">
-    </chip-list>
-</div>
+    <h1 style="margin-left: 300px; margin-top: 50px;">Turmas de {{discipline.name}}</h1>
 
-<div class="container">
-    <chip-list *ngIf="classSelected" [title]="'Aulas'" [cardList]="lessonCards" [editionList]="editionMode"
-        [multiSelection]="true" (selection)="lessonCardsSelected($event)" (newCard)="newClassForm($event)"
-        (delete)="deleteLesson($event)">
-    </chip-list>
+    <div *ngIf="lessonFormOpen" class="form">
+        <app-standard-form [formModel]="lessonForm" (response)="saveFormData($event)"></app-standard-form>
+    </div>
+    <div *ngIf="classFormOpen" class="form">
+        <app-standard-form [formModel]="classForm" (response)="saveFormData($event)"></app-standard-form>
+    </div>
+    <div class="edition-container">
+        <p>Modo edição </p>
+        <label class="switch">
+            <input type="checkbox" (change)="changeEdition($event)">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <div class="module-container">
+        <chip-list [title]="'Turmas'" [cardList]="cards" [editionList]="editionMode" [multiSelection]="false"
+            (selection)="cardsSelected($event)" (newCard)="newClassForm($event)" (delete)="deleteItem($event)">
+        </chip-list>
+    </div>
+
+    <div class="module-container">
+        <chip-list *ngIf="classSelected" [title]="'Aulas'" [cardList]="lessonCards" [editionList]="editionMode"
+            [multiSelection]="false" (selection)="lessonCardsSelected($event)" (newCard)="newLessonForm($event)"
+            (delete)="deleteLesson($event)">
+        </chip-list>
+    </div>
+
+
 </div>

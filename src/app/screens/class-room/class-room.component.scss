@@ -1,9 +1,20 @@
-.container {
+.container{
+  max-width: 1024px;
+  margin: 20px auto;
+}
+
+
+.module-container {
     float: left;
     clear: both;
     margin-top: 50px;
     margin-bottom: 50px;
-    margin-left: 400px;
+}
+
+.form {
+  clear: both;
+  max-width: 800px;
+  margin: 10px 0px 10px 180px;
 }
 
 .edition-container{

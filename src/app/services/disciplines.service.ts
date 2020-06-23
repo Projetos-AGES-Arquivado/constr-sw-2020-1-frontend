@@ -39,6 +39,7 @@ export class DisciplinesService {
   }
 
   getLessons(classID): Observable<Lesson[]> {
+    console.log(classID);
     return this.httpClient.get<Lesson[]>(this.url + `/lessons?class_id=${classID}`)
       .pipe(
         retry(2),
