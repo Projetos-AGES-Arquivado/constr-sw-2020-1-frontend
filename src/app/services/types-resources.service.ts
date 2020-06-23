@@ -18,6 +18,28 @@ export class TypesResourcesService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
+
+  deleteResourceTypes(idResource): Observable<any> {
+    return this.httpClient.delete<any>(this.url + '/resources-types/' + idResource)
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
+
+  patchResourceTypes(idResource, resourceType): Observable<any> {
+    return this.httpClient.patch<any>(this.url + '/resources-types/' + idResource, { resourceType })
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
+
+  putResourceTypes(idResource, resourceType): Observable<any> {
+    return this.httpClient.put<any>(this.url + '/resources-types/' + idResource, { resourceType })
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
+
   // Obtem todos os tipos
   getResourcesTypes(): Observable<Resources[]> {
     return this.httpClient.get<Resources[]>(this.url + '/resources-types')

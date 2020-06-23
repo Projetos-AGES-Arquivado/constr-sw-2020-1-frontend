@@ -1,6 +1,21 @@
-<div class="contentTypes">
-  <h1 class="titleResourceTypes">Tipos de Recursos</h1>
-  <div *ngFor="let type of resourcesTypes">
-    <app-list [cards]="type"></app-list>
+<div class="container">
+  <div class="header">
+    <h1>Tipos</h1>
+    <button (click)="showForm()" ><span [ngClass]="exibiForm ? 'hide' : 'show'"></span> Tipos</button>
   </div>
+
+  <div class="cards" *ngIf="!exibiForm && !exibiFormEdit">
+    <app-list [cards]="resourcesTypes" (eventEmmiter)="eventEmmiter($event)"></app-list>
+  </div>
+
+  <div class="form" *ngIf="exibiForm">
+    <app-standard-form [formModel]="form"></app-standard-form>
+  </div>
+
+
+  <div class="form" *ngIf="exibiFormEdit">
+    <app-standard-form [formModel]="formEdit"></app-standard-form>
+  </div>
+
+
 </div>
