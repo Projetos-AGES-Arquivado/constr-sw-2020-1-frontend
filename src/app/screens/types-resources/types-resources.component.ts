@@ -22,6 +22,10 @@ export class TypesResourcesComponent implements OnInit {
 
   getResourcesTypes(){
     this.typesResourcesService.getResourcesTypes().subscribe((data: any[]) => {
+      for(let i = 0; i < data.length; i++){
+        data[i].label = data[i].type;
+      }
+      console.log('data', data);
       this.resourcesTypes = data;
       console.log("peace2", this.resourcesTypes)
     });
