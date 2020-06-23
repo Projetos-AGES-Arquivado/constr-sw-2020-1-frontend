@@ -9,6 +9,8 @@ import { RequestType } from './models/request-type.enum';
 import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
 
 import { TypesResourcesComponent } from './screens/types-resources/types-resources.component';
+import {ReservasComponent} from './screens/reservas/reservas.component';
+
 
 const routes: Routes = [
   {
@@ -22,6 +24,10 @@ const routes: Routes = [
   {
     path: 'grupo5',
     component: Grupo5Component
+  },
+  {
+    path: 'reservas',
+    component: ReservasComponent
   },
 ];
 

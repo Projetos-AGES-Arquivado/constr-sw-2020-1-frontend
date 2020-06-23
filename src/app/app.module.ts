@@ -29,6 +29,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { StandardModalComponent } from './components/standard-form/modal/standard-modal/standard-modal.component';
 import { TypesResourcesComponent } from './screens/types-resources/types-resources.component';
 
+import { ReservasComponent} from './screens/reservas/reservas.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -42,6 +44,7 @@ import { TypesResourcesComponent } from './screens/types-resources/types-resourc
     UserRegistrationComponent,
     StandardModalComponent,
     CardComponent,
+    ReservasComponent
   ],
   imports: [
     BrowserModule,
