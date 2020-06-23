@@ -1,4 +1,4 @@
-<div class="class-list" *ngFor="let card of cards ;" >
+<div class="class-list" *ngFor="let card of cards ;" (click)="show(card._id)">
   <h2>{{card.label}}</h2>
   <div class="buttons">
     <button mat-raised-button class="button-primary" (click)="edit(card._id)">Editar</button>

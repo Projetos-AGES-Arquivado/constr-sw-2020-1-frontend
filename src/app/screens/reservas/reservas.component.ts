@@ -12,6 +12,8 @@ export class ReservasComponent{
 
   users: { name: string, label: string }[];
 
+  resources: { name: string, label: string }[];
+
   exibiForm: boolean;
 
   form: {};
@@ -25,6 +27,7 @@ export class ReservasComponent{
 
   async montaForm(){
     this.users = await this.apiService.getUsers();
+    this.resources = await this.apiService.getResources();
 
     this.form = {
       title: 'Cadastrar nova reserva',
@@ -32,14 +35,7 @@ export class ReservasComponent{
         {
           inputType: InputType.Dropdown,
           fieldName: 'Recursos',
-          dropdownElements: [
-            {
-              name: 'Sala'
-            },
-            {
-              name: 'Projetor'
-            }
-          ]
+          dropdownElements: this.resources
         },
         {
           inputType: InputType.Dropdown,
@@ -78,6 +74,10 @@ export class ReservasComponent{
 
     this.montaForm();
 
+   /* this.apiService.getReserves().then(results => {
+      console.log(results);
+    })*/
+
     this.cards = [
       { _id: 1231, label: 'Reserva 01/07/2020'},
       { _id: 1232, label: 'Reserva 08/07/2020'},
@@ -87,13 +87,15 @@ export class ReservasComponent{
 
 
   eventEmmiter(event){
-    alert(`Evento ${event.action} -> ${event.id}`);
     switch (event.action) {
       case 'edit':
-          this.onEdit(event.id);
-          break;
+        this.onEdit(event.id);
+        break;
       case 'remove':
         this.onRemove(event.id);
+        break;
+      case 'show':
+        this.onShow(event.id);
         break;
     }
   }
@@ -102,7 +104,14 @@ export class ReservasComponent{
     alert(`Vamos editar o id ${id}`);
   }
 
+  onShow(id){
+    alert(`Vamos exibir o id ${id}`);
+  }
+
   onRemove(id){
+    if (!confirm(`Tem certeza que quer remover o id: ${id}`)){
+      return null;
+    }
     this.cards = this.cards.filter(cards => cards._id !== id);
   }
 
