@@ -38,7 +38,8 @@ import { AddRoomComponent } from './screens/buildings-rooms/add-room/add-room.co
 
 import { ReservasComponent } from './screens/reservas/reservas.component';
 import { LessonScreenComponent } from './screens/lesson-screen/lesson-screen.component';
-import { EditBuildingComponent } from './screens/buildings-rooms/edit-room/edit-building.component';
+import { EditBuildingComponent } from './screens/buildings-rooms/edit-building/edit-building.component';
+import { EditRoomComponent } from './screens/buildings-rooms/edit-room/edit-room.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { EditBuildingComponent } from './screens/buildings-rooms/edit-room/edit-
     ClassRoomComponent,
     LessonScreenComponent,
     AddRoomComponent,
+    EditRoomComponent,
   ],
   imports: [
     CommonModule,

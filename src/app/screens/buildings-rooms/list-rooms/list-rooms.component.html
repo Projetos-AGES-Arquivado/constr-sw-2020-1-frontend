@@ -1,6 +1,13 @@
 <div style="margin: 20px;">
-  <h1>{{ building.buildingName }}</h1>
-  <button mat-raised-button color="default" style="margin-right: 10px" (click)="goBack()">
+  <ng-template [ngIf]="building">
+    <h1>Prédio: {{ building.buildingName }}</h1>
+  </ng-template>
+  <button
+    mat-raised-button
+    color="default"
+    style="margin-right: 10px;"
+    (click)="goBack()"
+  >
     VOLTAR
   </button>
   <button mat-raised-button color="primary" (click)="addRoom()">

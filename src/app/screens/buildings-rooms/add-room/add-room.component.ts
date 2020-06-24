@@ -12,7 +12,10 @@ export class AddRoomComponent {
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.buildingId = this.route.snapshot.paramMap.get('id');
-    this.roomModel.saveEndpoint = this.roomModel.saveEndpoint.replace(":id", this.buildingId);
+    this.roomModel.saveEndpoint = this.roomModel.saveEndpoint.replace(
+      ':id',
+      this.buildingId
+    );
   }
 
   onCreate() {

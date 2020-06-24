@@ -56,4 +56,11 @@ export class BuildingRoomsApi {
       .delete(`${this.baseURL}/buildings/${buildingID}/rooms/${roomId}`)
       .toPromise();
   }
+
+  async getRoom(buildingID: string, roomId: string): Promise<Room> {
+    const response = await this.httpClient
+      .get(`${this.baseURL}/buildings/${buildingID}/rooms/${roomId}`)
+      .toPromise();
+    return response as Room;
+  }
 }

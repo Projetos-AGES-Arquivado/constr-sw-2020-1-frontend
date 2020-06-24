@@ -37,7 +37,7 @@ export class ListRoomsComponent implements OnInit {
   }
 
   redirectToEditScreen(room: Room) {
-    //
+    this.router.navigateByUrl(`/buildings/${this.buildingId}/rooms/${room.roomNumber}`);
   }
 
   async removeRoom(room: Room) {
