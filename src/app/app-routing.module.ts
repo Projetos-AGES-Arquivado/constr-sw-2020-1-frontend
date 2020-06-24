@@ -11,6 +11,7 @@ import {ReservasComponent} from './screens/reservas/reservas.component';
 import { DisciplinesScreenComponent } from './screens/disciplines-screen/disciplines-screen.component';
 import { ClassRoomComponent} from './screens/class-room/class-room.component';
 import { LessonScreenComponent} from './screens/lesson-screen/lesson-screen.component'
+import { UserListComponent } from './screens/grupo-1/user-list/user-list.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'grupo1',
-    component: UserRegistrationComponent
+    component: UserListComponent
   },
   {
     path: 'grupo5',

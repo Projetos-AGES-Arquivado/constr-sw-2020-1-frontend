@@ -33,6 +33,7 @@ import { StandardModalComponent } from './components/standard-form/modal/standar
 
 import { ReservasComponent} from './screens/reservas/reservas.component';
 import { LessonScreenComponent } from './screens/lesson-screen/lesson-screen.component';
+import { UserListComponent } from './screens/grupo-1/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { LessonScreenComponent } from './screens/lesson-screen/lesson-screen.com
     DisciplinesScreenComponent,
     ClassRoomComponent,
     LessonScreenComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,

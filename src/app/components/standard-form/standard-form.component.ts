@@ -101,7 +101,10 @@ export class StandardFormComponent implements OnInit {
       });
     }
 
-    model.dropdownElements = elements;
+    console.log('model:', model.dropdownElements);
+    console.log('elements:', elements);
+
+    model.dropdownElements.push(elements[0]);
 
     return model;
   }
