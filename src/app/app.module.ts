@@ -22,9 +22,11 @@ import { CardComponent } from './components/card/card.component';
 
 import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { ChipComponent } from './components/chip/chip.component';
+import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
+import { DisciplinesScreenComponent } from './screens/disciplines-screen/disciplines-screen.component';
+import { ClassRoomComponent } from './screens/class-room/class-room.component';
 
 import { PrediosComponent } from './components/predios/predios.component';
-import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { StandardModalComponent } from './components/standard-form/modal/standard-modal/standard-modal.component';
@@ -32,6 +34,9 @@ import { CommonModule } from '@angular/common';
 import { ListBuildingsComponent } from './screens/buildings-rooms/list-buildings/list-buildings.component';
 import { ListRoomsComponent } from './screens/buildings-rooms/list-rooms/list-rooms.component';
 import { AddBuildingComponent } from './screens/buildings-rooms/add-building/add-building.component';
+
+import { ReservasComponent} from './screens/reservas/reservas.component';
+import { LessonScreenComponent } from './screens/lesson-screen/lesson-screen.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +54,10 @@ import { AddBuildingComponent } from './screens/buildings-rooms/add-building/add
     ListBuildingsComponent,
     ListRoomsComponent,
     AddBuildingComponent,
+    ReservasComponent,
+    DisciplinesScreenComponent,
+    ClassRoomComponent,
+    LessonScreenComponent,
   ],
   imports: [
     CommonModule,

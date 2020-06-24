@@ -10,6 +10,12 @@
 
   background: #fafafa;
   box-shadow: 2px 2px 5px 2px rgb(187,187,187, 0.7);
+
+  transition: 2ms;
+}
+
+.class-list:hover{
+  transform: translateX(10px);
 }
 
 .class-list .buttons{
@@ -30,7 +36,6 @@
   background: #EB5757;
   margin-left: 10px;
 }
-
 
 h2{
   font-weight: 400;

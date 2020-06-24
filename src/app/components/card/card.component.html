@@ -1,7 +1,7 @@
-<div class="class-list">
-  <h2>{{description}}</h2>
+<div class="class-list" *ngFor="let card of cards ;" >
+  <h2>{{card.label}}</h2>
   <div class="buttons">
-    <button mat-raised-button class="button-primary" (click)="edit()">Editar</button>
-    <button mat-raised-button class="button-warm" (click)="remove('predios')">Excluir</button>
+    <button mat-raised-button class="button-primary" (click)="edit(card._id)">Editar</button>
+    <button mat-raised-button class="button-warm" (click)="remove(card._id)">Excluir</button>
   </div>
 </div>

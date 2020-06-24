@@ -7,6 +7,11 @@ import { UserRegistrationComponent } from './screens/grupo-1/user-registration/u
 import { ListBuildingsComponent } from './screens/buildings-rooms/list-buildings/list-buildings.component';
 import { ListRoomsComponent } from './screens/buildings-rooms/list-rooms/list-rooms.component';
 import { AddBuildingComponent } from './screens/buildings-rooms/add-building/add-building.component';
+import {ReservasComponent} from './screens/reservas/reservas.component';
+import { DisciplinesScreenComponent } from './screens/disciplines-screen/disciplines-screen.component';
+import { ClassRoomComponent} from './screens/class-room/class-room.component';
+import { LessonScreenComponent} from './screens/lesson-screen/lesson-screen.component'
+
 
 const routes: Routes = [
   {
@@ -33,6 +38,22 @@ const routes: Routes = [
     path: 'buildings/create',
     component: AddBuildingComponent,
   },
+  {
+    path: 'reservas',
+    component: ReservasComponent
+  },
+  {
+    path: 'disciplinas',
+    component: DisciplinesScreenComponent
+  },
+  {
+    path: 'turmas',
+    component: ClassRoomComponent
+  },
+  {
+    path: 'aulas',
+    component: LessonScreenComponent
+  }
 ];
 
 @NgModule({

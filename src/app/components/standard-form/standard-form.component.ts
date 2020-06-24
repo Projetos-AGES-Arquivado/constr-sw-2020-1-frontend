@@ -24,6 +24,9 @@ export class StandardFormComponent implements OnInit {
   @Output()
   response = new EventEmitter();
 
+  @Output() selectionEmmiter = new EventEmitter();
+  @Output() deleteCardEmmiter = new EventEmitter();
+
   textInputs: FormInputModel[];
   numberInputs: FormInputModel[];
   dropdownInputs: FormInputModel[];
@@ -44,8 +47,7 @@ export class StandardFormComponent implements OnInit {
 
     const group = {};
     this.formModel.inputs.forEach((input) => {
-      const formControl = new FormControl('');
-      group[input.fieldName] = formControl;
+      group[input.fieldName] = new FormControl(!!input.standardValue?input.standardValue:'')
     });
     this.myForm = new FormGroup(group);
   }
@@ -111,24 +113,29 @@ export class StandardFormComponent implements OnInit {
 
   onSubmit() {
     let request: Observable<any>;
+    let rawValue = this.myForm.getRawValue();
+    this.formModel.inputs.forEach((input) => {
+      if (!!input.shouldNotSend) {
+        delete rawValue[input.fieldName];
+      }
+      if (input.inputType === 2) {
+        rawValue[input.fieldName] = [];
+        input.cardList.map((item) => {
+          if (!!item.uniqueID) {
+            rawValue[input.fieldName].push(item.uniqueID);
+          }
+        });
+      }
+    });
     switch (+this.formModel.requestType) {
       case RequestType.POST:
-        request = this.httpClient.post(
-          this.formModel.saveEndpoint,
-          this.myForm.getRawValue()
-        );
+        request = this.httpClient.post(this.formModel.saveEndpoint, rawValue);
         break;
       case RequestType.PUT:
-        request = this.httpClient.put(
-          this.formModel.saveEndpoint,
-          this.myForm.getRawValue()
-        );
+        request = this.httpClient.put(this.formModel.saveEndpoint, rawValue);
         break;
       case RequestType.PATCH:
-        request = this.httpClient.patch(
-          this.formModel.saveEndpoint,
-          this.myForm.getRawValue()
-        );
+        request = this.httpClient.patch(this.formModel.saveEndpoint, rawValue);
         break;
     }
 
@@ -145,7 +152,6 @@ export class StandardFormComponent implements OnInit {
   }
 
   public openModal(element: DropdownElement) {
-    console.log('element', element);
     if (element.id === 666) {
       const dialogConfig = new MatDialogConfig();
 
@@ -158,6 +164,16 @@ export class StandardFormComponent implements OnInit {
       dialogRef.afterClosed().subscribe((result) => {
         window.location.reload();
       });
+    } else if (!!element.outputOnClick) {
+      this.response.emit(element);
     }
+  }
+
+  public selection($event) {
+    this.selectionEmmiter.emit($event);
+  }
+
+  public deleteCard($event) {
+    this.deleteCardEmmiter.emit($event);
   }
 }
