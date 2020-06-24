@@ -20,7 +20,7 @@ export class SidenavComponent implements OnInit {
   
 @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
 
-sideBarOpen = true;
+sideBarOpen = false;
 
 
 toggleSidebar() {

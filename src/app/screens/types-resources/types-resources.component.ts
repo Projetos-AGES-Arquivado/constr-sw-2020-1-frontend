@@ -4,6 +4,8 @@ import { Resources } from '../../models/resources.model';
 import {InputType} from '../../models/input-type.enum';
 import {RequestType} from '../../models/request-type.enum';
 
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { StandardModalComponent } from '../../components/standard-form/modal/standard-modal/standard-modal.component';
 @Component({
   selector: 'app-types-resources',
   templateUrl: './types-resources.component.html',
@@ -11,14 +13,14 @@ import {RequestType} from '../../models/request-type.enum';
 })
 export class TypesResourcesComponent implements OnInit {
 
-  constructor(private typesResourcesService: TypesResourcesService) { 
+  constructor(private typesResourcesService: TypesResourcesService, public dialog: MatDialog) { 
     this.exibiForm = false;
     this.exibiFormEdit = false;
 
     this.montaForm();
   }
 
-  resources: Resources[];
+  resources: any[];
   resourcesTypes: any[];
   form: {};
   formEdit: {};
@@ -40,7 +42,7 @@ export class TypesResourcesComponent implements OnInit {
       inputs: [
         {
           inputType: InputType.Text,
-          fieldName: 'Tipo de recurso',
+          fieldName: 'type',
         },
       ],
       requestType: RequestType.POST,
@@ -52,7 +54,7 @@ export class TypesResourcesComponent implements OnInit {
       inputs: [
         {
           inputType: InputType.Text,
-          fieldName: 'Tipo de recurso',
+          fieldName: 'type',
         },
       ],
       requestType: RequestType.PATCH,
@@ -85,6 +87,12 @@ export class TypesResourcesComponent implements OnInit {
     this.exibiForm = false;
   }
 
+  backList(){
+    this.exibiForm = false;
+    this.exibiFormEdit = false;
+    this.getResourcesTypes();
+  }
+
   onEdit(id){
     alert(`Vamos editar o id ${id}`);
     // this.showForm();
@@ -107,7 +115,10 @@ export class TypesResourcesComponent implements OnInit {
   }
 
   getResources() {
-    this.typesResourcesService.getResources().subscribe((data: Resources[]) => {
+    this.typesResourcesService.getResources().subscribe((data: any[]) => {
+      for(let i = 0; i < data.length; i++){
+        data[i].label = data[i].type;
+      }
       this.resources = data;
       console.log("peace", this.resources)
     });

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
 import { CARDS } from './MockedCards'
-import { Card } from '../../../Card'
+import { Card } from '../../../Card';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component ({
     selector: 'app-grupo-5',

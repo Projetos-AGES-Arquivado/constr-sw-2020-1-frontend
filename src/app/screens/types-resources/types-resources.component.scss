@@ -60,3 +60,15 @@
 .showing{
   display: '';
 }
+
+.styledButton{
+  outline: none;
+  background-color: blue;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
