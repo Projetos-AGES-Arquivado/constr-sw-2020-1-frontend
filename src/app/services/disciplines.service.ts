@@ -31,11 +31,28 @@ export class DisciplinesService {
         catchError(this.handleError))
   }
 
+  deleteDiscipline(disciplineID: string) {
+    return this.httpClient.delete(this.url + '/courses/' + disciplineID, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError))
+
+  }
+
   getClasses(disciplineID): Observable<DisciplineClass[]> {
     return this.httpClient.get<DisciplineClass[]>(this.url + `/classes?course=${disciplineID}`)
       .pipe(
         retry(2),
         catchError(this.handleError))
+  }
+
+  deleteClass(classID:string) {
+    return this.httpClient.delete(this.url + '/class/' + classID, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+
   }
 
   getLessons(classID): Observable<Lesson[]> {

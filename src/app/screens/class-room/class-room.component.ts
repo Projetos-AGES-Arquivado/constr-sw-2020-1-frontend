@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Building } from '../../models/Building';
 import { Room } from '../../models/Room';
 import { DisciplinesService } from '../../services/disciplines.service';
+import { CardInterface } from '../../components/card/card.interface'
 import { ChipListComponent } from '../../components/chip-list/chip-list.component'
 import { StandardFormComponent } from '../../components/standard-form/standard-form.component';
-import { LESSON_FORM } from './lesson-form'
 import { CLASS_FORM } from './class-form'
 import { FormModel } from '../../models/form-interface'
 import { Card } from '../../../Card'
 import { DisciplineClass } from 'src/app/models/DisciplineClass';
 import { Discipline } from 'src/app/models/Discipline';
-import { Lesson } from 'src/app/models/Lesson';
+import { RequestType } from 'src/app/models/request-type.enum';
 
 @Component({
   selector: 'app-class-room',
@@ -22,10 +22,12 @@ export class ClassRoomComponent implements OnInit {
   constructor(private disciplineService: DisciplinesService) { }
 
   discipline: Discipline
+  disciplines: Discipline[]
+  cardInterface: CardInterface[];
   disciplineClasses: DisciplineClass[]
-  lessons: Lesson[]
   cards: Card[]
   lessonCards: Card[]
+  disciplineSelected: boolean
   classSelected: boolean
   selectedClassId: string
   editionMode: boolean
@@ -33,52 +35,52 @@ export class ClassRoomComponent implements OnInit {
   lessonFormOpen: boolean
   lessonForm: FormModel
   classForm: FormModel
+  selectedDisciplineID: string
 
   ngOnInit(): void {
     this.classSelected = false
     this.editionMode = false
     this.discipline = JSON.parse(sessionStorage.getItem('disciplineID'));
-    this.getClasses();
+    this.getDisciplines();
     this.cards = []
     this.lessonCards = []
-    this.lessonForm = LESSON_FORM
     this.classForm = CLASS_FORM
     this.classFormOpen = false
     this.lessonFormOpen = false
+    this.disciplineSelected = false
   }
 
   changeEdition(e) {
     this.editionMode = e.target.checked
   }
 
-  getClasses() {
-    this.disciplineService.getClasses(this.discipline.id).subscribe((data: DisciplineClass[]) => {
-      this.disciplineClasses = data
-      console.log(this.disciplineClasses)
-      this.cards = this.disciplineClasses.map((disciplineClass) => {
+  getDisciplines() {
+    this.disciplineService.getDiscipline().subscribe((data: Discipline[]) => {
+      this.disciplines = data
+      this.cards = this.disciplines.map((discipline)=>{
         return {
-          uniqueID: disciplineClass.id,
-          label: `${disciplineClass.number}`,
-          selected: false,
+          uniqueID: discipline.id,
+          label: discipline.name,
+          selected: false
         }
       })
-    })
+      console.log(this.disciplines)
+    });
+
   }
 
-  getLessons(classID) {
-    console.log(`clic`);
-    this.disciplineService.getLessons(classID).subscribe((data: Lesson[]) => {
-      this.lessons = data;
-      console.log(data)
-      this.lessonCards = this.lessons.map((lesson) => {
+  getClasses(disciplineID) {
+    this.disciplineService.getClasses(disciplineID).subscribe((data: DisciplineClass[]) => {
+      this.disciplineClasses = data
+      console.log(this.disciplineClasses)
+      this.cardInterface = this.disciplineClasses.map((disciplineClass) => {
         return {
-          uniqueID: lesson.id,
-          label: `${lesson.date}`,
-          selected: false,
+          _id: disciplineClass.id,
+          label: `${disciplineClass.number}`,
         }
       })
-      this.classSelected = true
-      this.selectedClassId = classID
+      this.disciplineSelected = true;
+
     })
   }
 
@@ -89,22 +91,13 @@ export class ClassRoomComponent implements OnInit {
     if (selectedClassList.length > 0) {
       const classID = selectedClassList[0].uniqueID
       console.log(`id: ${classID}`)
-      this.getLessons(classID)
+      this.getClasses(classID)
+      this.selectedClassId = classID
     }
     else {
       console.log('flase')
-      this.classSelected = false
+      this.disciplineSelected = false
     }
-  }
-
-  lessonCardsSelected(event: Card[]) {
-    let res = ""
-    event.forEach(item => {
-      if (item.selected) {
-        res += `${item.label}; `
-      }
-    });
-    alert(`Itens selecionados: ${res}`);
   }
 
   newClassForm(event) {
@@ -114,6 +107,7 @@ export class ClassRoomComponent implements OnInit {
   saveFormData(event) {
     this.lessonFormOpen = false;
     this.classFormOpen = false;
+    this.getClasses(this.selectedClassId)
     alert("item adicionada")
   }
 
@@ -122,19 +116,36 @@ export class ClassRoomComponent implements OnInit {
     this.lessonFormOpen = !this.lessonFormOpen
   }
 
-  deleteLesson(event: Card) {
-    if (confirm(`deletar ${event.label}?`)) {
-      this.disciplineService.deleteLesson(event.uniqueID).subscribe(() => {
-        this.getLessons(this.classSelected);
-      });
-
+  deleteItem(classID) {
+    if (confirm(`deletar ${classID}?`)) {
+      this.disciplineService.deleteClass(classID).subscribe(() => {
+        this.getClasses(this.selectedClassId)
+        alert(`item de ID: ${classID} deletado`)
+      })
     }
   }
 
-  deleteItem(event: Card) {
-    if (confirm(`deletar ${event.label}?`)) {
-      alert(`item de ID: ${event.uniqueID} deletado`)
+  btnClick(event) {
+    console.log(event.action);
+    if (event.action === "remove") {
+      this.deleteItem(event.id);
+    } else if (event.action === "edit"){
+      this.classForm.requestType = RequestType.PUT
+      this.classForm.saveEndpoint = `http://18.230.151.22:3000/classes/${event.id}`,
+      this.classFormOpen = true
     }
+    // sessionStorage.setItem('disciplineID', JSON.stringify(discipline))
+    // this.router.navigateByUrl('/turmas');
+  };
+
+  closeModal(){
+    this.classFormOpen = false
+  }
+
+  showForm(){
+    this.classForm.saveEndpoint = 'http://18.230.151.22:3000/classes'
+    this.classForm.requestType = RequestType.POST
+    this.classFormOpen = true
   }
 
 }

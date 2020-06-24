@@ -10,6 +10,7 @@ import { UserRegistrationComponent } from './screens/grupo-1/user-registration/u
 import {ReservasComponent} from './screens/reservas/reservas.component';
 import { DisciplinesScreenComponent } from './screens/disciplines-screen/disciplines-screen.component';
 import { ClassRoomComponent} from './screens/class-room/class-room.component';
+import { LessonScreenComponent} from './screens/lesson-screen/lesson-screen.component'
 
 
 const routes: Routes = [
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'turmas',
     component: ClassRoomComponent
+  },
+  {
+    path: 'aulas',
+    component: LessonScreenComponent
   }
 ];
 

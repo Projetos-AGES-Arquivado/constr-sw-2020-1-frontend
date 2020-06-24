@@ -32,6 +32,7 @@ import { StandardModalComponent } from './components/standard-form/modal/standar
 
 
 import { ReservasComponent} from './screens/reservas/reservas.component';
+import { LessonScreenComponent } from './screens/lesson-screen/lesson-screen.component';
 
 @NgModule({
   declarations: [
@@ -45,9 +46,10 @@ import { ReservasComponent} from './screens/reservas/reservas.component';
     UserRegistrationComponent,
     StandardModalComponent,
     CardComponent,
-    ReservasComponent
+    ReservasComponent,
     DisciplinesScreenComponent,
     ClassRoomComponent,
+    LessonScreenComponent,
   ],
   imports: [
     BrowserModule,

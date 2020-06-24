@@ -1,30 +1,25 @@
 <div class="container">
-    <h1 style="margin-left: 300px; margin-top: 50px;">Turmas de {{discipline.name}}</h1>
-
-    <div *ngIf="lessonFormOpen" class="form">
-        <app-standard-form [formModel]="lessonForm" (response)="saveFormData($event)"></app-standard-form>
-    </div>
-    <div *ngIf="classFormOpen" class="form">
-        <app-standard-form [formModel]="classForm" (response)="saveFormData($event)"></app-standard-form>
-    </div>
-    <div class="edition-container">
-        <p>Modo edição </p>
-        <label class="switch">
-            <input type="checkbox" (change)="changeEdition($event)">
-            <span class="slider round"></span>
-        </label>
+    <div class="header">
+        <h1>Turmas</h1>
+        <button (click)="showForm()">Adicionar</button>
     </div>
     <div class="module-container">
-        <chip-list [title]="'Turmas'" [cardList]="cards" [editionList]="editionMode" [multiSelection]="false"
-            (selection)="cardsSelected($event)" (newCard)="newClassForm($event)" (delete)="deleteItem($event)">
+        <chip-list [title]="'Selecione as disciplinas'" [cardList]="cards" [editionList]="editionMode"
+            [multiSelection]="false" (selection)="cardsSelected($event)" (newCard)="newClassForm($event)"
+            (delete)="deleteItem($event)">
         </chip-list>
     </div>
 
-    <div class="module-container">
-        <chip-list *ngIf="classSelected" [title]="'Aulas'" [cardList]="lessonCards" [editionList]="editionMode"
-            [multiSelection]="false" (selection)="lessonCardsSelected($event)" (newCard)="newLessonForm($event)"
-            (delete)="deleteLesson($event)">
-        </chip-list>
+    <div class="card-container">
+        <app-list [cards]="cardInterface" (eventEmmiter)="btnClick($event)">
+        </app-list>
+    </div>
+    
+    <div *ngIf="classFormOpen" class="modal">
+        <div class="modal-content">
+            <button style="float: right;" (click)="closeModal()">close</button>
+            <app-standard-form [formModel]="classForm" (response)="saveFormData($event)"></app-standard-form>
+        </div>
     </div>
 
 
