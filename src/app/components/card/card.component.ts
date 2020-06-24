@@ -1,25 +1,32 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {CardInterface} from './card.interface';
 
 @Component({
   selector: 'app-list',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
 
-  @Input() description: '';
+  @Input() cards: CardInterface[];
+
+  @Output() eventEmmiter = new EventEmitter();
 
   constructor() { }
 
-  edit(){
-    alert('editar');
+  remove(id: string | number){
+    this.eventEmmiter.emit({
+      action: 'remove',
+      id
+    });
   }
 
-  remove(endpoint){
-    alert('remover endpoint');
+  edit(id: string | number){
+    this.eventEmmiter.emit({
+      action: 'edit',
+      id
+    });
   }
 
-  ngOnInit(): void {
-  }
 
 }

@@ -6,6 +6,8 @@ import { Grupo5Component } from './screens/grupo-5/grupo-5.component';
 import {HomeComponent} from './screens/home/home.component';
 import { StandardFormComponent } from './components/standard-form/standard-form.component';
 import { RequestType } from './models/request-type.enum';
+import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
+import {ReservasComponent} from './screens/reservas/reservas.component';
 import { DisciplinesScreenComponent } from './screens/disciplines-screen/disciplines-screen.component';
 import { ClassRoomComponent} from './screens/class-room/class-room.component';
 
@@ -16,8 +18,16 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'grupo1',
+    component: UserRegistrationComponent
+  },
+  {
     path: 'grupo5',
     component: Grupo5Component
+  },
+  {
+    path: 'reservas',
+    component: ReservasComponent
   },
   {
     path: 'disciplinas',
