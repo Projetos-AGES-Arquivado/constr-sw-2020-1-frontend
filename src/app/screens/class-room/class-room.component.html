@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="header">
+        <h1>Turmas</h1>
+        <button (click)="showForm()">Adicionar</button>
+    </div>
+    <div class="module-container">
+        <chip-list [title]="'Selecione as disciplinas'" [cardList]="cards" [editionList]="editionMode"
+            [multiSelection]="false" (selection)="cardsSelected($event)" (newCard)="newClassForm($event)"
+            (delete)="deleteItem($event)">
+        </chip-list>
+    </div>
+
+    <div class="card-container">
+        <app-list [cards]="cardInterface" (eventEmmiter)="btnClick($event)">
+        </app-list>
+    </div>
+    
+    <div *ngIf="classFormOpen" class="modal">
+        <div class="modal-content">
+            <button style="float: right;" (click)="closeModal()">close</button>
+            <app-standard-form [formModel]="classForm" (response)="saveFormData($event)"></app-standard-form>
+        </div>
+    </div>
+
+
+</div>
