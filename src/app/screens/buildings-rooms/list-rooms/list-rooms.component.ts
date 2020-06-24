@@ -48,4 +48,8 @@ export class ListRoomsComponent implements OnInit {
   goBack() {
     this.router.navigateByUrl(`/buildings`);
   }
+
+  addRoom(){
+    this.router.navigateByUrl(`/buildings/${this.buildingId}/rooms/create`)
+  }
 }
