@@ -4,7 +4,7 @@
     <button (click)="showForm()" ><span [ngClass]="exibiForm ? 'hide' : 'show'"></span> Usuário</button>
   </div>
   <div class="form" *ngIf="exibiForm">
-    <app-user-registration></app-user-registration>
+    <app-standard-form [formModel]="form" (deleteCardEmmiter)="this.deleteCard($event)" (dropdownEvent)="this.eventEmitted($event)" (response)="reload()"></app-standard-form>
   </div>
   <div class="cards">
     <app-list [cards]="cards" (eventEmmiter)="eventEmmiter($event)" ></app-list>
