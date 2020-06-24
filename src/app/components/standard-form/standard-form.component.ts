@@ -23,6 +23,8 @@ export class StandardFormComponent implements OnInit {
 
   @Output()
   response = new EventEmitter();
+  @Output()
+  dropdownEvent = new EventEmitter();
 
   @Output() selectionEmmiter = new EventEmitter();
   @Output() deleteCardEmmiter = new EventEmitter();
@@ -101,9 +103,6 @@ export class StandardFormComponent implements OnInit {
       });
     }
 
-    console.log('model:', model.dropdownElements);
-    console.log('elements:', elements);
-
     model.dropdownElements.push(elements[0]);
 
     return model;
@@ -120,7 +119,7 @@ export class StandardFormComponent implements OnInit {
         rawValue[input.fieldName] = [];
         input.cardList.map((item) => {
           if (!!item.uniqueID) {
-            rawValue[input.fieldName].push(item.uniqueID);
+            rawValue[input.fieldName].push(input.usesName ? item.label : item.uniqueID);
           }
         });
       }
@@ -163,7 +162,7 @@ export class StandardFormComponent implements OnInit {
         window.location.reload();
       });
     } else if (!!element.outputOnClick) {
-      this.response.emit(element);
+      this.dropdownEvent.emit(element);
     }
   }
 
