@@ -12,6 +12,7 @@ import { DisciplinesScreenComponent } from './screens/disciplines-screen/discipl
 import { ClassRoomComponent } from './screens/class-room/class-room.component';
 import { LessonScreenComponent } from './screens/lesson-screen/lesson-screen.component';
 import { AddRoomComponent } from './screens/buildings-rooms/add-room/add-room.component';
+import { EditBuildingComponent } from './screens/buildings-rooms/edit-room/edit-building.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'buildings/create',
     component: AddBuildingComponent,
+  },
+  {
+    path: 'buildings/:id',
+    component: EditBuildingComponent,
   },
   {
     path: 'buildings/:id/rooms',

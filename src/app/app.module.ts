@@ -38,6 +38,7 @@ import { AddRoomComponent } from './screens/buildings-rooms/add-room/add-room.co
 
 import { ReservasComponent } from './screens/reservas/reservas.component';
 import { LessonScreenComponent } from './screens/lesson-screen/lesson-screen.component';
+import { EditBuildingComponent } from './screens/buildings-rooms/edit-room/edit-building.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { LessonScreenComponent } from './screens/lesson-screen/lesson-screen.com
     ListBuildingsComponent,
     ListRoomsComponent,
     AddBuildingComponent,
+    EditBuildingComponent,
     ReservasComponent,
     DisciplinesScreenComponent,
     ClassRoomComponent,

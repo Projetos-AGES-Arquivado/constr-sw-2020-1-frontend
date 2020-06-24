@@ -1,10 +1,11 @@
 import { RequestType } from 'src/app/models/request-type.enum';
 import { InputType } from 'src/app/models/input-type.enum';
+import { FormModel } from 'src/app/models/form-interface';
 
-export const BUILDING_REGISTRATION_MODEL = {
-  title: 'Cadastro de prédios',
-  requestType: RequestType.POST,
-  saveEndpoint: 'https://stark-gorge-03313.herokuapp.com/buildings',
+export const BUILDING_EDITION_MODEL: FormModel = {
+  title: 'Edição de prédios',
+  requestType: RequestType.PUT,
+  saveEndpoint: 'https://stark-gorge-03313.herokuapp.com/buildings/:id',
   inputs: [
     {
       inputType: InputType.Text,

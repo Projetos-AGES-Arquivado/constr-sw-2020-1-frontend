@@ -10,6 +10,8 @@ export class FormInputModel {
   //required if you want to create a HTML input with a name different of the fieldName property
   label?: string;
   fieldName: string;
+
+  standardInput?: any;
   shouldNotSend?: boolean;
   //required to chipset type of input
   title?: string;

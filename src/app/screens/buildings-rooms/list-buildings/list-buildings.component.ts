@@ -33,12 +33,11 @@ export class ListBuildingsComponent implements OnInit {
     this.router.navigateByUrl(`/buildings/create`);
   }
 
-  redirectToEditScreen(buiding: Building) {
-    // redirect to edit screen
+  redirectToEditScreen(building: Building) {
+    this.router.navigateByUrl(`/buildings/${building.buildingID}`);
   }
 
   redirectToRoomsScreen(building: Building) {
     this.router.navigateByUrl(`/buildings/${building.buildingID}/rooms`);
-    // redirect to rooms
   }
 }

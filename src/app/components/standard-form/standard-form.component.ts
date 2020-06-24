@@ -47,6 +47,7 @@ export class StandardFormComponent implements OnInit {
 
     const group = {};
     this.formModel.inputs.forEach((input) => {
+      console.log(input)
       group[input.fieldName] = new FormControl(!!input.standardValue?input.standardValue:'')
     });
     this.myForm = new FormGroup(group);
