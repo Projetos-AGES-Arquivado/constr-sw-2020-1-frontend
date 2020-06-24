@@ -13,11 +13,6 @@ export const USER_REGISTRATION_MODEL = {
     },
     {
       inputType: InputType.Text,
-      label: 'Grupos',
-      fieldName: 'roleName',
-    },
-    {
-      inputType: InputType.Text,
       label: 'Email',
       fieldName: 'email',
     },
@@ -25,6 +20,15 @@ export const USER_REGISTRATION_MODEL = {
       inputType: InputType.Text,
       label: 'Apelido',
       fieldName: 'nickname',
+    },
+    {
+      inputType: InputType.Chip,
+      label: 'Grupos',
+      fieldName: 'roles',
+      title: 'Grupos',
+      cardList: [],
+      editionList: true,
+      multiSelection: true,
     },
   ],
 };
