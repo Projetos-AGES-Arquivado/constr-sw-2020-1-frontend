@@ -27,14 +27,15 @@
 
   <div class="divider"></div>
 
-  <div class="chip-list">
-    <chip-list
+    <div class="chip-list">
+      <chip-list
       *ngFor="let chip of chipInputs"
+      (selection)="this.selection($event)"
+      (delete)="this.deleteCard($event)"
       [title]="chip.title"
       [cardList]="chip.cardList"
       [editionList]="chip.editionList"
-      [multiSelection]="chip.multiSelection"
-    >
+      [multiSelection]="chip.multiSelection">
     </chip-list>
   </div>
 
