@@ -26,6 +26,13 @@ export class TypesResourcesService {
         catchError(this.handleError))
   }
 
+  deleteResources(idResource): Observable<any> {
+    return this.httpClient.delete<any>(this.url + '/resources/' + idResource)
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
+
   patchResourceTypes(idResource, resourceType): Observable<any> {
     return this.httpClient.patch<any>(this.url + '/resources-types/' + idResource, { resourceType })
       .pipe(
@@ -57,6 +64,12 @@ export class TypesResourcesService {
         catchError(this.handleError))
   }
 
+  getResourcesByType(id: any): Observable<Resources[]>{
+    return this.httpClient.get<Resources[]>(this.url + `/resources/`)
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
   // Manipulação de erros
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';

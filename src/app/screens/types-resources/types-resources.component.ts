@@ -3,7 +3,7 @@ import { TypesResourcesService } from '../../services/types-resources.service'
 import { Resources } from '../../models/resources.model';
 import {InputType} from '../../models/input-type.enum';
 import {RequestType} from '../../models/request-type.enum';
-
+import { Card } from '../../../Card';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { StandardModalComponent } from '../../components/standard-form/modal/standard-modal/standard-modal.component';
 @Component({
@@ -16,22 +16,25 @@ export class TypesResourcesComponent implements OnInit {
   constructor(private typesResourcesService: TypesResourcesService, public dialog: MatDialog) { 
     this.exibiForm = false;
     this.exibiFormEdit = false;
+    this.exibiFormPostResources = false;
 
     this.montaForm();
   }
 
   resources: any[];
+  resourcesFilter: any[];
   resourcesTypes: any[];
   form: {};
   formEdit: {};
+  formPostResources: {};
   cols: any[];
   exibiForm: boolean;
   exibiFormEdit : boolean
-  resouceTypeId : any
+  exibiFormPostResources: boolean
+  resourceTypeId : any
 
   ngOnInit() {
     this.getResourcesTypes();
-    this.getResources();
   }
 
   async montaForm(){
@@ -58,16 +61,37 @@ export class TypesResourcesComponent implements OnInit {
         },
       ],
       requestType: RequestType.PATCH,
-      saveEndpoint: 'http://168.227.250.164:3456/resources-types/' + this.resouceTypeId,
+      saveEndpoint: 'http://168.227.250.164:3456/resources-types/' + this.resourceTypeId,
+    };
+
+    this.formPostResources = {
+      title: 'Incluir Recurso',
+      inputs: [
+        {
+          inputType: InputType.Dropdown,
+          fieldName: 'resourceType',
+          dropdownElements: [
+            {
+              name: this.resourceTypeId
+            }
+          ]
+        },
+        {
+          inputType: InputType.Text,
+          fieldName: 'resourceName',
+        },
+      ],
+      requestType: RequestType.POST,
+      saveEndpoint: 'http://168.227.250.164:3456/resources/',
     }
   }
 
   eventEmmiter(event){
-    console.log('event', event);
-    this.resouceTypeId = event.id;
+    this.resourceTypeId = event.id;
     
     switch (event.action) {
       case 'edit':
+        this.getResources(true);
         this.showFormEdit();
         this.montaForm();
           break;
@@ -80,6 +104,10 @@ export class TypesResourcesComponent implements OnInit {
   showForm(){
     this.exibiForm = !this.exibiForm;
     this.exibiFormEdit = false;
+  }
+
+  newResource(){
+    this.exibiFormPostResources = !this.exibiFormPostResources;
   }
 
   showFormEdit(){
@@ -111,20 +139,47 @@ export class TypesResourcesComponent implements OnInit {
       for(let i = 0; i < data.length; i++){
         data[i].label = data[i].type;
       }
-      console.log('data', data);
       this.resourcesTypes = data;
-      console.log("peace2", this.resourcesTypes)
     });
   }
 
-  getResources() {
+  getResources(isFilter: boolean) {
     this.typesResourcesService.getResources().subscribe((data: any[]) => {
       for(let i = 0; i < data.length; i++){
         data[i].label = data[i].resourceName;
       }
       this.resources = data;
-      console.log("peace", this.resources)
+      
+      if(isFilter){
+       this.getResourcesByType(this.resourceTypeId);
+      }
     });
   }
 
+  getResourcesByType(id: any){
+    this.resourcesFilter = [];
+    this.resources.forEach(resource => {
+      if(resource.resourceType && resource.resourceType._id == id){
+        this.resourcesFilter.push(resource);
+      }  
+    });
+  }
+
+  reloadPage(){
+    this.exibiFormPostResources = false;
+    this.getResources(true);
+  }
+
+  reloadResource(){
+    alert("Tipo de recurso editado/incluído com sucesso!");
+    this.backList();
+  } 
+
+  deleteResource(event: any) {
+    this.typesResourcesService.deleteResources(event._id).subscribe((data: any[]) => {
+      this.getResources(true);
+      alert("Recurso excluído com sucesso!");
+    }); 
+  }
+  
 }
