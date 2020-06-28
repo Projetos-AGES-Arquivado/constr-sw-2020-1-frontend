@@ -16,7 +16,9 @@
     <button class="styledButton" (click)="backList()">Voltar</button>
     <app-standard-form [formModel]="formEdit"></app-standard-form>
 
-    <br><br><br><br>
+  </div>
+
+  <div class="chiplist" *ngIf="exibiFormEdit">
     <chip-list [title]="'Recursos'" 
     [cardList]="resources" 
     [editionList]="true" 
@@ -24,9 +26,6 @@
     (selection)="showForm()" 
     (newCard)="showForm()"
     (delete)="showForm()"></chip-list>
-
-
   </div>
-
 
 </div>

@@ -9,7 +9,7 @@ import { Resources } from '../models/resources.model';
 })
 export class TypesResourcesService {
 
-  url = 'http://52.91.97.146:3456'; 
+  url = 'http://168.227.250.164:3456'; 
 
   // injetando o HttpClient
   constructor(private httpClient: HttpClient) { }

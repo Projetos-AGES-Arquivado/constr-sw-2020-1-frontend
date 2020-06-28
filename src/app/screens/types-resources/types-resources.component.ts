@@ -46,7 +46,7 @@ export class TypesResourcesComponent implements OnInit {
         },
       ],
       requestType: RequestType.POST,
-      saveEndpoint: 'http://52.91.97.146:3456/resources-types/',
+      saveEndpoint: 'http://168.227.250.164:3456/resources-types',
     };
 
     this.formEdit = {
@@ -58,7 +58,7 @@ export class TypesResourcesComponent implements OnInit {
         },
       ],
       requestType: RequestType.PATCH,
-      saveEndpoint: 'http://52.91.97.146:3456/resources-types/' + this.resouceTypeId,
+      saveEndpoint: 'http://168.227.250.164:3456/resources-types/' + this.resouceTypeId,
     }
   }
 
@@ -99,7 +99,10 @@ export class TypesResourcesComponent implements OnInit {
   }
 
   onRemove(id){
-    this.resourcesTypes = this.resourcesTypes.filter(cards => cards._id !== id);
+    this.typesResourcesService.deleteResourceTypes(id).subscribe((data: any[]) => {
+      alert('Excluido com sucesso!');
+      this.resourcesTypes = this.resourcesTypes.filter(cards => cards._id !== id);
+    });
   }
 
 
@@ -117,7 +120,7 @@ export class TypesResourcesComponent implements OnInit {
   getResources() {
     this.typesResourcesService.getResources().subscribe((data: any[]) => {
       for(let i = 0; i < data.length; i++){
-        data[i].label = data[i].type;
+        data[i].label = data[i].resourceName;
       }
       this.resources = data;
       console.log("peace", this.resources)
