@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'reservas',
     component: ReservasComponent
   },
+  {
+    path: 'reservas/:id',
+    component: ReservasComponent
+  },
 ];
 
 

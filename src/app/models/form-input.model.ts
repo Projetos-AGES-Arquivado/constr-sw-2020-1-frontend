@@ -18,6 +18,7 @@ export class FormInputModel {
   editionList?: boolean;
   addButton?: boolean;
   modalForm?: FormModel;
+  multiple ?: string;
 }
 
 export class DropdownElement {

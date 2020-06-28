@@ -1,15 +1,29 @@
 <div class="container">
-  <div class="header">
-    <h1>Reservas</h1>
-    <button (click)="showForm()" ><span [ngClass]="exibiForm ? 'hide' : 'show'"></span> Reservas</button>
-
+  <div class="show-card-info" *ngIf="exibiCardInfo">
+    <div class="header">
+      <a [routerLink]="['/reservas']"><button>Voltar</button></a>
+      <span></span>
+    </div>
+    <div class="infos" *ngIf="this.id">
+      <h1>Infos - Id {{this.id}}</h1>
+      <h4>Data Inicio: {{this.reserve.timeOpen}}</h4>
+      <h4>Data Fim: {{this.reserve.timeClose}}</h4>
+      <h4>Usuário: {{this.reserve.idUser}}</h4>
+      <h4>Disciplina: {{this.reserve.idSubject}}</h4>
+      <h4>Recursos: {{this.reserve.idResources}}</h4>
+    </div>
   </div>
-  <div class="form" *ngIf="exibiForm">
-    <app-standard-form [formModel]="form"></app-standard-form>
+  <div *ngIf="!exibiCardInfo">
+    <div class="header">
+      <h1>Reservas</h1>
+      <button (click)="showForm()" ><span [ngClass]="exibiForm ? 'hide' : 'show'"></span> Reservas</button>
+    </div>
+    <div class="form" *ngIf="exibiForm">
+      <app-standard-form [formModel]="form" (response)="onSubmitForm($event)"></app-standard-form>
+    </div>
+    <div class="cards" *ngIf="!exibiForm">
+      <app-list [cards]="cards" (eventEmmiter)="eventEmmiter($event)" ></app-list>
+    </div>
   </div>
-  <div class="cards" *ngIf="!exibiForm">
-    <app-list [cards]="cards" (eventEmmiter)="eventEmmiter($event)" ></app-list>
-  </div>
-
 </div>
 

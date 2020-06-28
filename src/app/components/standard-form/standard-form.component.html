@@ -10,7 +10,7 @@
 
     <mat-form-field *ngFor="let input of dropdownInputs">
       <mat-label>{{ input.label? input.label : input.fieldName }}</mat-label>
-      <mat-select matNativeControl [formControlName]="input.fieldName">
+      <mat-select matNativeControl [formControlName]="input.fieldName" [multiple]="input.multiple">
         <mat-option
           *ngFor="let option of input.dropdownElements; let i = index"
           [value]="input.dropdownElements[i].name" (click)="openModal(input.dropdownElements[i])"
