@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="header">
+    <h1>Usuários: </h1>
+    <button (click)="showForm()" ><span [ngClass]="exibiForm ? 'hide' : 'show'"></span> Usuário</button>
+  </div>
+  <div class="form" *ngIf="exibiForm">
+    <app-standard-form [formModel]="form" (deleteCardEmmiter)="this.deleteCard($event)" (dropdownEvent)="this.eventEmitted($event)" (response)="reload()"></app-standard-form>
+  </div>
+  <div class="cards">
+    <app-list [cards]="cards" (eventEmmiter)="eventEmmiter($event)" ></app-list>
+  </div>
+
+</div>
+
