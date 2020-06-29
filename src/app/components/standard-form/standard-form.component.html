@@ -7,10 +7,21 @@
   </mat-form-field>
 
   <div class="divider"></div>
+  
+  <mat-form-field *ngFor="let input of numberInputs" appearance="fill">
+    <mat-label>{{ input.label ? input.label : input.fieldName }}</mat-label>
+    <input matInput [formControlName]="input.fieldName" type="number" />
+  </mat-form-field>
+
+  <div class="divider"></div>
 
   <mat-form-field *ngFor="let input of dropdownInputs">
     <mat-label>{{ input.label ? input.label : input.fieldName }}</mat-label>
-    <mat-select matNativeControl [formControlName]="input.fieldName" [(ngModel)]="input.standardValue">
+    <mat-select
+      matNativeControl
+      [formControlName]="input.fieldName"
+      [(ngModel)]="input.standardValue"
+    >
       <mat-option
         *ngFor="let option of input.dropdownElements; let i = index"
         [value]="input.dropdownElements[i].name"
@@ -27,15 +38,16 @@
 
   <div class="divider"></div>
 
-    <div class="chip-list">
-      <chip-list
+  <div class="chip-list">
+    <chip-list
       *ngFor="let chip of chipInputs"
       (selection)="this.selection($event)"
       (delete)="this.deleteCard($event)"
       [title]="chip.title"
       [cardList]="chip.cardList"
       [editionList]="chip.editionList"
-      [multiSelection]="chip.multiSelection">
+      [multiSelection]="chip.multiSelection"
+    >
     </chip-list>
   </div>
 

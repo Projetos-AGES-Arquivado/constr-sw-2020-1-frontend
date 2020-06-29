@@ -1,0 +1,29 @@
+<button
+  mat-raised-button
+  color="primary"
+  style="margin: 20px;"
+  (click)="redirectToNewScreen()"
+>
+  NOVO PRÉDIO
+</button>
+<div *ngFor="let building of buildings">
+  <mat-card class="example-card" style="margin: 20px;">
+    <mat-card-header>
+      <mat-card-title>{{ building.buildingName }}</mat-card-title>
+      <mat-card-subtitle>{{ building.buildingID }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Campus: {{ building.campus }}</p>
+      <p>Número de salas: {{ building.numberOfRooms }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="redirectToEditScreen(building)">
+        EDITAR
+      </button>
+      <button mat-button (click)="removeBuilding(building)">EXCLUIR</button>
+      <button mat-button (click)="redirectToRoomsScreen(building)">
+        SALAS
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

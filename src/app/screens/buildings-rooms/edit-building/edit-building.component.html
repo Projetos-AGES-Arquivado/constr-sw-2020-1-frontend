@@ -1,0 +1,6 @@
+<ng-template [ngIf]="!loading">
+  <app-standard-form
+    [formModel]="buildingModel"
+    (response)="onEdit()"
+  ></app-standard-form>
+</ng-template>

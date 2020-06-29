@@ -30,12 +30,14 @@ export class StandardFormComponent implements OnInit {
   @Output() deleteCardEmmiter = new EventEmitter();
 
   textInputs: FormInputModel[];
+  numberInputs: FormInputModel[];
   dropdownInputs: FormInputModel[];
   chipInputs: FormInputModel[];
   myForm: FormGroup;
 
   constructor(private httpClient: HttpClient, public dialog: MatDialog) {
     this.textInputs = new Array<FormInputModel>();
+    this.numberInputs = new Array<FormInputModel>();
     this.dropdownInputs = new Array<FormInputModel>();
     this.chipInputs = new Array<FormInputModel>();
   }
@@ -47,6 +49,7 @@ export class StandardFormComponent implements OnInit {
 
     const group = {};
     this.formModel.inputs.forEach((input) => {
+      console.log(input)
       group[input.fieldName] = new FormControl(!!input.standardValue?input.standardValue:'')
     });
     this.myForm = new FormGroup(group);
@@ -62,6 +65,9 @@ export class StandardFormComponent implements OnInit {
       switch (+input.inputType) {
         case InputType.Text:
           this.textInputs.push(input);
+          break;
+        case InputType.Number:
+          this.numberInputs.push(input);
           break;
         case InputType.Dropdown:
           this.dropdownInputs.push(this.formatDropdownElements(input));

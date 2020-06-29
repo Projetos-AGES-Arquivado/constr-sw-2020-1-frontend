@@ -1,36 +1,29 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { ItensMenu } from "../../models/itens-menu.model";
+import { ItensMenu } from '../../models/itens-menu.model';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss']
+  styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent implements OnInit {
-
   items = {};
-  name= 'thominhas'
-  
-  constructor() { }
+  name = 'thominhas';
+
+  constructor() {}
 
   ngOnInit() {
-     this.items = ItensMenu.admin;
+    this.items = ItensMenu.admin;
   }
 
-  
-@Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
+  @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
+  sideBarOpen = false;
 
-sideBarOpen = false;
-
-
-toggleSidebar() {
-  this.toggleSideBarForMe.emit();
-  this.sideBarOpen = !this.sideBarOpen;
-  setTimeout(() => {
-    window.dispatchEvent(
-      new Event('resize')
-    );
-  }, 300);
-}
-
+  toggleSidebar() {
+    this.toggleSideBarForMe.emit();
+    this.sideBarOpen = !this.sideBarOpen;
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 300);
+  }
 }
