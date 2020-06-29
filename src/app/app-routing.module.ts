@@ -38,6 +38,10 @@ const routes: Routes = [
     component: ReservasComponent
   },
   {
+    path: 'reservas/:id',
+    component: ReservasComponent
+  },
+  {
     path: 'disciplinas',
     component: DisciplinesScreenComponent
   },

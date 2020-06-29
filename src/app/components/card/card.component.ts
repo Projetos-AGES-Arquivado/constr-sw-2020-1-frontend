@@ -28,11 +28,4 @@ export class CardComponent {
     });
   }
 
-  show(id: string | number){
-    this.eventEmmiter.emit({
-      action: 'show',
-      id
-    });
-  }
-
 }

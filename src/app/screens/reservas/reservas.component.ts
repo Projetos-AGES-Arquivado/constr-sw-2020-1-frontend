@@ -152,9 +152,6 @@ export class ReservasComponent{
       case 'remove':
         this.onRemove(event.id);
         break;
-      case 'show':
-        this.onShow(event.id);
-        break;
       default:
         break;
     }
@@ -162,10 +159,6 @@ export class ReservasComponent{
 
   onEdit(id){
     alert(`Vamos editar o id ${id}`);
-  }
-
-  onShow(id){
-    this.route.navigate([`/reservas/${id}`]);
   }
 
   onRemove(id){
