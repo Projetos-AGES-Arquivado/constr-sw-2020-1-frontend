@@ -28,7 +28,7 @@ import { ClassRoomComponent } from './screens/class-room/class-room.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { StandardModalComponent } from './components/standard-form/modal/standard-modal/standard-modal.component';
-
+import { TypesResourcesComponent } from './screens/types-resources/types-resources.component';
 
 import { ReservasComponent} from './screens/reservas/reservas.component';
 import { LessonScreenComponent } from './screens/lesson-screen/lesson-screen.component';
@@ -39,6 +39,7 @@ import { GroupListComponent } from './screens/grupo-1/group-list/group-list.comp
   declarations: [
     HomeComponent,
     Grupo5Component,
+    TypesResourcesComponent,
     StandardFormComponent,
     ChipListComponent,
     ChipComponent,

@@ -1,0 +1,80 @@
+
+  * {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+  
+  .container{
+    max-width: 1024px;
+    margin: 20px auto;
+  }
+  
+
+
+.header{
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.header button{
+  cursor: pointer;
+  min-width: 110px;
+  height: 35px;
+  background-color: #6202EE;
+  color: #fff;
+  border-radius: 30px;
+  border: 1px solid #000;
+  transition: color 2ms;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.header button:hover{
+    background-color: #360380;
+}
+
+.form {
+  max-width: 800px;
+  margin: 10px 0px 10px 180px;
+}
+
+.cards {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.show::before{
+  content: '+';
+}
+
+.hide::before{
+  content: '-';
+}
+
+.hidden {
+  display: none;
+}
+
+.showing{
+  display: '';
+}
+
+.styledButton{
+  outline: none;
+  background-color: blue;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.chiplist{
+  margin-left: 12%;
+  margin-top: 15px;
+  margin-bottom: 10%;
+}

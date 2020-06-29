@@ -4,6 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { Grupo5Component } from './screens/grupo-5/grupo-5.component';
 import {HomeComponent} from './screens/home/home.component';
+import { StandardFormComponent } from './components/standard-form/standard-form.component';
+import { RequestType } from './models/request-type.enum';
+
+import { TypesResourcesComponent } from './screens/types-resources/types-resources.component';
 import {ReservasComponent} from './screens/reservas/reservas.component';
 import { DisciplinesScreenComponent } from './screens/disciplines-screen/disciplines-screen.component';
 import { ClassRoomComponent} from './screens/class-room/class-room.component';
@@ -14,16 +18,16 @@ import { GroupListComponent } from './screens/grupo-1/group-list/group-list.comp
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
     path: 'usuarios',
     component: UserListComponent
   },
   {
     path: 'grupos',
     component: GroupListComponent
+  },
+  {
+    path: 'grupo2',
+    component: TypesResourcesComponent
   },
   {
     path: 'grupo5',
