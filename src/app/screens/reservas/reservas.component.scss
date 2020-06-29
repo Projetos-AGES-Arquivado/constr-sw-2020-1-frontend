@@ -3,14 +3,21 @@
 }
 
 .container{
-  max-width: 1024px;
+  max-width: 800px;
   margin: 20px auto;
 }
+
+.container .show-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .header{
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .header button{

@@ -23,6 +23,7 @@ export class FormInputModel {
   standardValue?: string;
   addButton?: boolean;
   modalForm?: FormModel;
+  multiple ?: string;
 }
 
 export class DropdownElement {
