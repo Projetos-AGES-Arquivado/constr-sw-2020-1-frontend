@@ -21,6 +21,7 @@ export class FormInputModel {
   editionList?: boolean;
   //required to chipset type of input
   multiSelection?: boolean;
+  usesName?: boolean;
   standardValue?: string;
   addButton?: boolean;
   modalForm?: FormModel;

@@ -14,15 +14,22 @@ import { LessonScreenComponent } from './screens/lesson-screen/lesson-screen.com
 import { AddRoomComponent } from './screens/buildings-rooms/add-room/add-room.component';
 import { EditBuildingComponent } from './screens/buildings-rooms/edit-building/edit-building.component';
 import { EditRoomComponent } from './screens/buildings-rooms/edit-room/edit-room.component';
+import { GroupListComponent } from './screens/grupo-1/group-list/group-list.component';
+import { UserListComponent } from './screens/grupo-1/user-list/user-list.component';
+import { TypesResourcesComponent } from './screens/types-resources/types-resources.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent,
+    path: 'usuarios',
+    component: UserListComponent,
   },
   {
-    path: 'grupo1',
-    component: UserRegistrationComponent,
+    path: 'grupos',
+    component: GroupListComponent,
+  },
+  {
+    path: 'grupo2',
+    component: TypesResourcesComponent,
   },
   {
     path: 'grupo5',

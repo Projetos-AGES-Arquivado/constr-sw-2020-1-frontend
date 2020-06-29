@@ -17,7 +17,6 @@ export class SidenavComponent implements OnInit {
   }
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
-
   sideBarOpen = false;
 
   toggleSidebar() {
