@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="header">
+    <h1>Tipos</h1>
+    <button (click)="showForm()">
+      <span [ngClass]="exibiForm ? 'hide' : 'show'"></span> Tipos
+    </button>
+  </div>
+
+  <div class="cards" *ngIf="!exibiForm && !exibiFormEdit">
+    <app-list
+      [cards]="resourcesTypes"
+      (eventEmmiter)="eventEmmiter($event)"
+    ></app-list>
+  </div>
+
+  <div class="form" *ngIf="exibiForm">
+    <app-standard-form [formModel]="form"(response)="reloadResource()"></app-standard-form>
+  </div>
+  <div *ngIf="exibiFormEdit">
+    <div class="form">
+      <button class="styledButton" (click)="backList()">Voltar</button>
+      <app-standard-form [formModel]="formEdit" (response)="reloadResource()" ></app-standard-form>
+    </div>
+
+    <div class="chiplist">
+      <chip-list
+        [title]="'Recursos'"
+        [cardList]="resourcesFilter"
+        [editionList]="true"
+        [multiSelection]="true"
+        (selection)="deleteResource($event)"
+        (newCard)="newResource()"
+        (delete)="deleteResource($event)"
+      ></chip-list>
+    </div>
+
+    <div class="form" *ngIf="exibiFormPostResources">
+      <app-standard-form [formModel]="formPostResources" (response)="reloadPage()"></app-standard-form>
+    </div>
+  </div>
+</div>

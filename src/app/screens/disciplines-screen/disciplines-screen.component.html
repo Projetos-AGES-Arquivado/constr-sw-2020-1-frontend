@@ -1,0 +1,19 @@
+<div class="container">
+        <div class="header">
+                <h1>Disciplinas</h1>
+                <button (click)="showForm()"> Adicionar</button>
+        </div>
+
+        <div class="card-container">
+                <app-list [cards]="cardInterface" (eventEmmiter)="btnClick($event)" (click)="btnClick($event)">
+                </app-list>
+        </div>
+
+        <div *ngIf="formOpen" class="modal">
+                <div class="modal-content">
+                        <button style="float: right;" (click)="closeModal()">close</button>
+                        <app-standard-form [formModel]="disciplineForm" (response)="saveFormData($event)">
+                        </app-standard-form>
+                </div>
+        </div>
+</div>

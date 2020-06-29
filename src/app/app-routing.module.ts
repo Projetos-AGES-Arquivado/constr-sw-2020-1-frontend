@@ -6,19 +6,28 @@ import { Grupo5Component } from './screens/grupo-5/grupo-5.component';
 import {HomeComponent} from './screens/home/home.component';
 import { StandardFormComponent } from './components/standard-form/standard-form.component';
 import { RequestType } from './models/request-type.enum';
-import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
 
+import { TypesResourcesComponent } from './screens/types-resources/types-resources.component';
 import {ReservasComponent} from './screens/reservas/reservas.component';
+import { DisciplinesScreenComponent } from './screens/disciplines-screen/disciplines-screen.component';
+import { ClassRoomComponent} from './screens/class-room/class-room.component';
+import { LessonScreenComponent} from './screens/lesson-screen/lesson-screen.component'
+import { UserListComponent } from './screens/grupo-1/user-list/user-list.component';
+import { GroupListComponent } from './screens/grupo-1/group-list/group-list.component';
 
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent
+    path: 'usuarios',
+    component: UserListComponent
   },
   {
-    path: 'grupo1',
-    component: UserRegistrationComponent
+    path: 'grupos',
+    component: GroupListComponent
+  },
+  {
+    path: 'grupo2',
+    component: TypesResourcesComponent
   },
   {
     path: 'grupo5',
@@ -29,9 +38,17 @@ const routes: Routes = [
     component: ReservasComponent
   },
   {
-    path: 'reservas/:id',
-    component: ReservasComponent
+    path: 'disciplinas',
+    component: DisciplinesScreenComponent
   },
+  {
+    path: 'turmas',
+    component: ClassRoomComponent
+  },
+  {
+    path: 'aulas',
+    component: LessonScreenComponent
+  }
 ];
 
 

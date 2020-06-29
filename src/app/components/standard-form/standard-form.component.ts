@@ -23,6 +23,11 @@ export class StandardFormComponent implements OnInit {
 
   @Output()
   response = new EventEmitter();
+  @Output()
+  dropdownEvent = new EventEmitter();
+
+  @Output() selectionEmmiter = new EventEmitter();
+  @Output() deleteCardEmmiter = new EventEmitter();
 
   textInputs: FormInputModel[];
   dropdownInputs: FormInputModel[];
@@ -39,11 +44,10 @@ export class StandardFormComponent implements OnInit {
     this.validateInputs()
       ? this.buildInputs()
       : console.log('Invalid FormModel');
-    console.log(this.textInputs);
 
     const group = {};
     this.formModel.inputs.forEach((input) => {
-      group[input.fieldName] = new FormControl('');
+      group[input.fieldName] = new FormControl(!!input.standardValue?input.standardValue:'')
     });
     this.myForm = new FormGroup(group);
   }
@@ -84,10 +88,14 @@ export class StandardFormComponent implements OnInit {
     const elements = new Array<DropdownElement>();
 
     for (let index = 0; index < model.dropdownElements.length; index++) {
-      elements.push({ id: index, name: model.dropdownElements[index].name, label: model.dropdownElements[index].label });
+      elements.push({
+        id: index,
+        name: model.dropdownElements[index].name,
+        label: model.dropdownElements[index].label,
+      });
     }
 
-    if(model.addButton) {
+    if (model.addButton) {
       elements.push({
         id: 666,
         name: 'Adicionar...',
@@ -95,30 +103,45 @@ export class StandardFormComponent implements OnInit {
       });
     }
 
-    model.dropdownElements = elements;
+    model.dropdownElements.push(elements[0]);
 
     return model;
   }
 
   onSubmit() {
     let request: Observable<any>;
+    let rawValue = this.myForm.getRawValue();
+    this.formModel.inputs.forEach((input) => {
+      if (!!input.shouldNotSend) {
+        delete rawValue[input.fieldName];
+      }
+      if (input.inputType === 2) {
+        rawValue[input.fieldName] = [];
+        input.cardList.map((item) => {
+          if (!!item.uniqueID) {
+            rawValue[input.fieldName].push(input.usesName ? item.label : item.uniqueID);
+          }
+        });
+      }
+    });
     switch (+this.formModel.requestType) {
       case RequestType.POST:
-        request = this.httpClient.post(this.formModel.saveEndpoint, this.myForm.getRawValue());
+        request = this.httpClient.post(this.formModel.saveEndpoint, rawValue);
         break;
       case RequestType.PUT:
-        request = this.httpClient.put(this.formModel.saveEndpoint, this.myForm.getRawValue());
+        request = this.httpClient.put(this.formModel.saveEndpoint, rawValue);
         break;
       case RequestType.PATCH:
-        request = this.httpClient.patch(this.formModel.saveEndpoint, this.myForm.getRawValue());
+        request = this.httpClient.patch(this.formModel.saveEndpoint, rawValue);
         break;
     }
 
-    request.subscribe(res => {
-      console.log(res);
-      this.response.emit(JSON.stringify(res));
-    },
-      err => {
+    request.subscribe(
+      (res) => {
+        console.log(res);
+        this.response.emit(JSON.stringify(res));
+      },
+      (err) => {
         console.log(err);
         this.response.emit(JSON.stringify(err));
       }
@@ -126,21 +149,28 @@ export class StandardFormComponent implements OnInit {
   }
 
   public openModal(element: DropdownElement) {
-    console.log('element', element);
-    if(element.id === 666) {
+    if (element.id === 666) {
       const dialogConfig = new MatDialogConfig();
 
       const dialogRef = this.dialog.open(StandardModalComponent, {
         data: {
-          formValue: element.formModal
-        }
+          formValue: element.formModal,
+        },
       });
 
-      dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe((result) => {
         window.location.reload();
       });
+    } else if (!!element.outputOnClick) {
+      this.dropdownEvent.emit(element);
     }
   }
 
-}
+  public selection($event) {
+    this.selectionEmmiter.emit($event);
+  }
 
+  public deleteCard($event) {
+    this.deleteCardEmmiter.emit($event);
+  }
+}
