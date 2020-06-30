@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component} from '@angular/core';
 import {InputType} from '../../models/input-type.enum';
 import {RequestType} from '../../models/request-type.enum';
 import {ReservasApiService} from './reservas.api.service';
@@ -35,56 +35,62 @@ export class ReservasComponent{
 
   reserve: Reserves;
 
-  optionsDatetime = {year: 'numeric',  month: 'numeric',  day: 'numeric',  hour: 'numeric',  minute: 'numeric',  second: 'numeric'};
+  urlApi: string;
 
-  showForm(){
+  async showForm(){
     this.exibiForm = !this.exibiForm;
+    await this.montaForm({method : 'POST', endPoint: this.urlApi});
   }
 
-  async montaForm(){
+  async montaForm(defaultValues){
     this.users = await this.apiService.getUsers();
     this.resources = await this.apiService.getResources();
-    this.subjects = this.apiService.getSubjects();
+    this.subjects = await this.apiService.getSubjects();
 
     this.form = {
-      title: 'Cadastrar nova reserva',
+      title: (!defaultValues.title ? 'Cadastrar nova reserva' : defaultValues.title),
       inputs: [
         {
           inputType: InputType.Dropdown,
           fieldName: 'idResources',
           label: 'Recursos',
           dropdownElements: this.resources,
-          multiple: 'multiple'
+          multiple: 'multiple',
+          standardValue: defaultValues.idResources
         },
         {
           inputType: InputType.Dropdown,
           fieldName: 'idUser',
           label: 'Usuario',
-          dropdownElements: this.users
+          dropdownElements: this.users,
+          standardValue: defaultValues.idUser,
         },
         {
           inputType: InputType.Dropdown,
           fieldName: 'idSubject',
           label: 'Disciplina',
-          dropdownElements: this.subjects
+          dropdownElements: this.subjects,
+          standardValue: defaultValues.idSubject
         },
         {
           inputType: InputType.Text,
           label: 'Data Inicio',
           fieldName: 'timeOpen',
+          standardValue: defaultValues.timeOpen
         },
         {
           inputType: InputType.Text,
           fieldName: 'timeClose',
           label: 'Data Fim',
+          standardValue: defaultValues.timeClose
         },
       ],
       chipInputs: [{
         chips: 'teste',
         cardList: 'teste'
       }],
-      requestType: RequestType.POST,
-      saveEndpoint: 'http://3.16.255.145:3457/reserves',
+      requestType: (defaultValues.method === 'POST') ? RequestType.POST : RequestType.PUT,
+      saveEndpoint: defaultValues.endPoint,
     };
   }
 
@@ -93,7 +99,9 @@ export class ReservasComponent{
     this.exibiCardInfo = false;
     this.exibiForm = false;
 
-    this.montaForm();
+    this.urlApi = 'http://3.16.255.145:3457/reserves';
+
+    this.montaForm({method : 'POST', endPoint: this.urlApi});
     this.cards = [];
     this.getReserves();
 
@@ -115,8 +123,6 @@ export class ReservasComponent{
       this.subjects = await this.apiService.getSubjects();
       this.reserves = await this.apiService.getReserves();
       this.reserve = this.reserves.filter(r => r._id === this.id)[0];
-      this.reserve.timeOpen = Intl.DateTimeFormat('pt-BR', this.optionsDatetime).format(new Date(this.reserve.timeOpen));
-      this.reserve.timeClose = Intl.DateTimeFormat('pt-BR', this.optionsDatetime).format(new Date(this.reserve.timeClose));
       this.users.forEach(user => {
         if (this.reserve.idUser === user.name){
           this.reserve.idUser = user.label;
@@ -129,15 +135,22 @@ export class ReservasComponent{
           }
         });
       });
+
+      this.subjects.forEach(subject => {
+        if (this.reserve.idSubject === subject.name){
+          this.reserve.idSubject = subject.label;
+        }
+      });
   }
 
   async getReserves(){
+
     this.cards = [];
     this.reserves = await this.apiService.getReserves();
     this.reserves.forEach(reserve => {
       const reserva: {_id: string; label: string} = {
         _id: reserve._id,
-        label: `Reserva ${Intl.DateTimeFormat('pt-BR', this.optionsDatetime).format(new Date(reserve.timeOpen))}`
+        label: `Reserva ${reserve.timeOpen}`
       };
       this.cards.push(reserva);
     });
@@ -157,8 +170,22 @@ export class ReservasComponent{
     }
   }
 
-  onEdit(id){
-    alert(`Vamos editar o id ${id}`);
+  async onEdit(id){
+    this.reserves = await this.apiService.getReserves();
+    this.reserve = this.reserves.filter(r => r._id === id)[0];
+    const defaultValues = {
+      title: `Editar ${id}`,
+      idUser: this.reserve.idUser,
+      idSubject: this.reserve.idSubject,
+      idResources: this.reserve.idResources,
+      timeOpen: this.reserve.timeOpen,
+      timeClose: this.reserve.timeClose,
+      endPoint: `${this.urlApi}/${id}`,
+      method: 'PUT',
+    };
+
+    await this.montaForm(defaultValues);
+    this.exibiForm = !this.exibiForm;
   }
 
   onRemove(id){
@@ -175,7 +202,7 @@ export class ReservasComponent{
     if (newReserve._id){
       await this.getReserves();
       this.exibiForm = !this.exibiForm;
-      alert('Cadastrado com sucesso!');
+      alert('Efetuado com sucesso!');
     } else {
       alert ('Erro ao cadastrar');
     }

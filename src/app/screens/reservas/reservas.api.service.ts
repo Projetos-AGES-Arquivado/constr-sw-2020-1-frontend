@@ -1,7 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable} from '@angular/core';
-import {User, Resources, Reserves, Subjects, Courses, SubjectsReturn} from './reservas.interfaces';
-import {resetFakeAsyncZone} from "@angular/core/testing";
+import {User, Resources, Reserves, Subjects} from './reservas.interfaces';
 
 
 @Injectable({ providedIn: 'root' })
@@ -22,7 +21,7 @@ export class ReservasApiService{
 
     this.apiResources = 'http://168.227.250.164:3456/resources';
 
-    this.apiSubject = 'http://18.230.151.22:3000';
+    this.apiSubject = 'http://18.231.6.34:3000/classes';
 
     this.apiReserves = 'http://3.16.255.145:3457/reserves';
 
@@ -48,20 +47,14 @@ export class ReservasApiService{
     });
   }
 
-  getSubjects(){
-    const subjects = [];
-    this.http.get<Subjects[]>(`${this.apiSubject}/classes`).subscribe( res => {
-      res.forEach(classes => {
-        this.http.get<Courses>(`${this.apiSubject}/courses/${classes.course}`).subscribe(courses => {
-          const subject: SubjectsReturn = {
-            name: classes._id,
-            label: `${courses.name} - ${Intl.DateTimeFormat('pt-BR').format(new Date(classes.timeSchedule))}`,
-          };
-          subjects.push(subject);
-        });
-      });
+  async getSubjects(){
+    const subjects = await this.http.get<Subjects[]>(`${this.apiSubject}`).toPromise();
+    return subjects.map(subject => {
+      return {
+        name: subject._id,
+        label: `${subject.course.name} - ${new Intl.DateTimeFormat('pt-BR').format(new Date(subject.timeSchedule))}`
+      };
     });
-    return subjects;
   }
 
   async getReserves(){
