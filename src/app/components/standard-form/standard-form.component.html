@@ -21,6 +21,7 @@
       matNativeControl
       [formControlName]="input.fieldName"
       [(ngModel)]="input.standardValue"
+      [multiple]="input.multiple"
     >
       <mat-option
         *ngFor="let option of input.dropdownElements; let i = index"
