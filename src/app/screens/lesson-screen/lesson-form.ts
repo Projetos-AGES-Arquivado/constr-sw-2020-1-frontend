@@ -8,6 +8,12 @@ export const LESSON_FORM: FormModel = {
   inputs: [
     {
       inputType: InputType.Text,
+      fieldName: 'description',
+      label:'Descrição',
+      standardValue: ''
+    },
+    {
+      inputType: InputType.Text,
       fieldName: 'date',
       label:'Data',
       standardValue: ''
