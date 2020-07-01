@@ -2,7 +2,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {CardInterface} from './card.interface';
 
 @Component({
-  selector: 'app-card',
+  selector: 'app-list',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })

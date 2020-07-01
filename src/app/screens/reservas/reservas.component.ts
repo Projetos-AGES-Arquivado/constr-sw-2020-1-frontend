@@ -98,12 +98,12 @@ export class ReservasComponent{
 
     this.exibiCardInfo = false;
     this.exibiForm = false;
-
     this.urlApi = 'http://3.16.255.145:3457/reserves';
 
     this.montaForm({method : 'POST', endPoint: this.urlApi});
     this.cards = [];
     this.getReserves();
+
 
 
     this.routeParams.params.subscribe(params => {
@@ -154,6 +154,7 @@ export class ReservasComponent{
       };
       this.cards.push(reserva);
     });
+
   }
 
 
