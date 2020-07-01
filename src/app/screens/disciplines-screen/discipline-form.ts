@@ -8,10 +8,14 @@ export const DISCIPLINE_FORM: FormModel = {
         {
             inputType: InputType.Text,
             fieldName: 'name',
+            label:'Nome',
+            standardValue: ''
         },
         {
             inputType: InputType.Text,
-            fieldName: 'academy'
+            fieldName: 'academy',
+            label: 'ID da Escola',
+            standardValue: '507f191e810c19729de860ea'
         }
     ],
     requestType: RequestType.POST,

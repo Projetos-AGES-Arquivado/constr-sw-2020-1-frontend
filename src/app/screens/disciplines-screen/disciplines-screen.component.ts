@@ -5,7 +5,7 @@ import { Building } from '../../models/Building';
 import { Discipline } from '../../models/Discipline'
 import { CardInterface } from '../../components/card/card.interface'
 import { Router } from '@angular/router';
-import {DISCIPLINE_FORM} from './discipline-form';
+import { DISCIPLINE_FORM } from './discipline-form';
 import { FormModel } from '../../models/form-interface'
 import { RequestType } from 'src/app/models/request-type.enum';
 
@@ -33,17 +33,16 @@ export class DisciplinesScreenComponent implements OnInit {
   getDisciplines() {
     this.disciplineService.getDiscipline().subscribe((data: Discipline[]) => {
       this.disciplines = data
-      this.cardInterface = this.disciplines.map((discipline)=>{
+      this.cardInterface = this.disciplines.map((discipline) => {
         return {
           _id: discipline.id,
           label: discipline.name
         }
       })
-      console.log(this.disciplines)
     });
   }
 
-  deleteItem(disciplineID){
+  deleteItem(disciplineID) {
     if (confirm(`deletar ${disciplineID}?`)) {
       this.disciplineService.deleteDiscipline(disciplineID).subscribe(() => {
         this.getDisciplines()
@@ -52,32 +51,40 @@ export class DisciplinesScreenComponent implements OnInit {
     }
   }
 
-  btnClick (event) {
-    console.log(event.action);
+  btnClick(event) {
     if (event.action === "remove") {
       this.deleteItem(event.id);
-    } else if (event.action === "edit"){
-      this.disciplineForm.requestType = RequestType.PUT
-      this.disciplineForm.saveEndpoint = `http://18.230.151.22:3000/courses/${event.id}`
-      this.formOpen = true
+    } else if (event.action === "edit") {
+      this.editionForm(event.id);
     }
     // sessionStorage.setItem('disciplineID', JSON.stringify(discipline))
     // this.router.navigateByUrl('/turmas');
   };
 
-  saveFormData(event){
+  editionForm(eventID) {
+    const selectedDiscipline = this.disciplines.filter(discipline => discipline.id === eventID)[0];
+    console.log(this.disciplines);
+    console.log(selectedDiscipline);
+    this.disciplineForm.inputs[0].standardValue = selectedDiscipline.name;
+    this.disciplineForm.inputs[1].standardValue = selectedDiscipline.academy;
+    this.disciplineForm.requestType = RequestType.PUT
+    this.disciplineForm.saveEndpoint = `http://18.230.151.22:3000/courses/${eventID}`
+    this.formOpen = true
+  }
+
+  saveFormData(event) {
     alert("Requisição feita")
     this.formOpen = false
     this.getDisciplines()
   }
 
-  showForm(){
+  showForm() {
     this.disciplineForm.requestType = RequestType.POST
     this.disciplineForm.saveEndpoint = "http://18.230.151.22:3000/courses"
     this.formOpen = true
   }
 
-  closeModal(){
+  closeModal() {
     this.formOpen = false
   }
 

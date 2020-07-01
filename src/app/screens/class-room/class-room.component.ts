@@ -130,13 +130,24 @@ export class ClassRoomComponent implements OnInit {
     if (event.action === "remove") {
       this.deleteItem(event.id);
     } else if (event.action === "edit"){
-      this.classForm.requestType = RequestType.PUT
-      this.classForm.saveEndpoint = `http://18.230.151.22:3000/classes/${event.id}`,
-      this.classFormOpen = true
+      this.editionForm(event.id);
     }
     // sessionStorage.setItem('disciplineID', JSON.stringify(discipline))
     // this.router.navigateByUrl('/turmas');
   };
+
+  editionForm(eventID) {
+    const selectedClass = this.disciplineClasses.filter(data => data.id === eventID)[0];
+    console.log(this.disciplineClasses);
+    console.log(selectedClass);
+    this.classForm.inputs[0].standardValue = `${selectedClass.number}`;
+    this.classForm.inputs[1].standardValue = `${selectedClass.timeSchedule}`;
+    this.classForm.inputs[2].standardValue = selectedClass.teacher;
+    this.classForm.inputs[3].standardValue = `${selectedClass.course}`;
+    this.classForm.requestType = RequestType.PUT
+    this.classForm.saveEndpoint = `http://18.230.151.22:3000/classes/${eventID}`,
+    this.classFormOpen = true
+  }
 
   closeModal(){
     this.classFormOpen = false

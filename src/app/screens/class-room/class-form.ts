@@ -8,18 +8,26 @@ export const CLASS_FORM: FormModel = {
         {
             inputType: InputType.Text,
             fieldName: 'number',
+            label: 'Numero',
+            standardValue: ''
         },
         {
             inputType: InputType.Text,
-            fieldName: 'timeSchedule'
+            fieldName: 'timeSchedule',
+            label: 'Data',
+            standardValue: ''
         },
         {
             inputType: InputType.Text,
-            fieldName: 'teacher'
+            fieldName: 'teacher',
+            label: 'ID do Professor',
+            standardValue: ''
         },
         {
             inputType: InputType.Text,
-            fieldName: 'course'
+            fieldName: 'course',
+            label: 'ID do Curso',
+            standardValue: ''
         }
     ],
     requestType: RequestType.POST,
