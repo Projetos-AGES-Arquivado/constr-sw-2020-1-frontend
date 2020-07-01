@@ -11,21 +11,13 @@ export interface Resources{
   resourceType?: { type: string };
 }
 
-export interface Courses {
-  name: string;
-}
-
-export interface SubjectsReturn{
-  name: string;
-  label: string;
-}
-
-
 export interface Subjects {
   _id: string;
   name: string;
   timeSchedule: Date;
-  course: string;
+  course: {
+    name: string;
+  };
 }
 
 export interface Reserves {

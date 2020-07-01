@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { Grupo5Component } from './screens/grupo-5/grupo-5.component';
-import { HomeComponent } from './screens/home/home.component';
-import { UserRegistrationComponent } from './screens/grupo-1/user-registration/user-registration.component';
 import { ListBuildingsComponent } from './screens/buildings-rooms/list-buildings/list-buildings.component';
 import { ListRoomsComponent } from './screens/buildings-rooms/list-rooms/list-rooms.component';
 import { AddBuildingComponent } from './screens/buildings-rooms/add-building/add-building.component';
@@ -62,6 +60,10 @@ const routes: Routes = [
   {
     path: 'reservas',
     component: ReservasComponent,
+  },
+  {
+    path: 'reservas/:id',
+    component: ReservasComponent
   },
   {
     path: 'disciplinas',

@@ -7,7 +7,7 @@
   </mat-form-field>
 
   <div class="divider"></div>
-  
+
   <mat-form-field *ngFor="let input of numberInputs" appearance="fill">
     <mat-label>{{ input.label ? input.label : input.fieldName }}</mat-label>
     <input matInput [formControlName]="input.fieldName" type="number" />
@@ -21,6 +21,7 @@
       matNativeControl
       [formControlName]="input.fieldName"
       [(ngModel)]="input.standardValue"
+      [multiple]="input.multiple"
     >
       <mat-option
         *ngFor="let option of input.dropdownElements; let i = index"
