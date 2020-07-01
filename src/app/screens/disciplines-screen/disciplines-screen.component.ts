@@ -68,7 +68,7 @@ export class DisciplinesScreenComponent implements OnInit {
     this.disciplineForm.inputs[0].standardValue = selectedDiscipline.name;
     this.disciplineForm.inputs[1].standardValue = selectedDiscipline.academy;
     this.disciplineForm.requestType = RequestType.PUT
-    this.disciplineForm.saveEndpoint = `http://18.230.151.22:3000/courses/${eventID}`
+    this.disciplineForm.saveEndpoint = `${this.disciplineService.url}/courses/${eventID}`
     this.formOpen = true
   }
 
@@ -80,7 +80,9 @@ export class DisciplinesScreenComponent implements OnInit {
 
   showForm() {
     this.disciplineForm.requestType = RequestType.POST
-    this.disciplineForm.saveEndpoint = "http://18.230.151.22:3000/courses"
+    this.disciplineForm.saveEndpoint = `${this.disciplineService.url}/courses`
+    this.disciplineForm.inputs[0].standardValue = '';
+    this.disciplineForm.inputs[1].standardValue = '507f191e810c19729de860ea';
     this.formOpen = true
   }
 

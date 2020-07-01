@@ -9,10 +9,14 @@ export const LESSON_FORM: FormModel = {
     {
       inputType: InputType.Text,
       fieldName: 'date',
+      label:'Data',
+      standardValue: ''
     },
     {
       inputType: InputType.Text,
-      fieldName: 'class_id'
+      fieldName: 'class_id',
+      label:'Id da Turma',
+      standardValue: ''
     }
   ],
   requestType: RequestType.POST,

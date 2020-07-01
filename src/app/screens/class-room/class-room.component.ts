@@ -95,7 +95,7 @@ export class ClassRoomComponent implements OnInit {
       this.selectedClassId = classID
     }
     else {
-      console.log('flase')
+      console.log('false')
       this.disciplineSelected = false
     }
   }
@@ -137,15 +137,14 @@ export class ClassRoomComponent implements OnInit {
   };
 
   editionForm(eventID) {
-    const selectedClass = this.disciplineClasses.filter(data => data.id === eventID)[0];
-    console.log(this.disciplineClasses);
-    console.log(selectedClass);
+    const selectedClass: DisciplineClass = this.disciplineClasses.filter(data => data.id === eventID)[0];
+    console.log(JSON.stringify(selectedClass));
     this.classForm.inputs[0].standardValue = `${selectedClass.number}`;
     this.classForm.inputs[1].standardValue = `${selectedClass.timeSchedule}`;
     this.classForm.inputs[2].standardValue = selectedClass.teacher;
-    this.classForm.inputs[3].standardValue = `${selectedClass.course}`;
+    this.classForm.inputs[3].standardValue = `${selectedClass.course.id}`;
     this.classForm.requestType = RequestType.PUT
-    this.classForm.saveEndpoint = `http://18.230.151.22:3000/classes/${eventID}`,
+    this.classForm.saveEndpoint = `${this.disciplineService.url}/classes/${eventID}`,
     this.classFormOpen = true
   }
 
@@ -154,7 +153,11 @@ export class ClassRoomComponent implements OnInit {
   }
 
   showForm(){
-    this.classForm.saveEndpoint = 'http://18.230.151.22:3000/classes'
+    this.classForm.inputs[0].standardValue = '';
+    this.classForm.inputs[1].standardValue = '';
+    this.classForm.inputs[2].standardValue = '507f191e810c19729de860ef'; 
+    this.classForm.inputs[3].standardValue = this.selectedClassId || '';
+    this.classForm.saveEndpoint = `${this.disciplineService.url}/classes`
     this.classForm.requestType = RequestType.POST
     this.classFormOpen = true
   }

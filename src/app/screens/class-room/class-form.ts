@@ -31,6 +31,6 @@ export const CLASS_FORM: FormModel = {
         }
     ],
     requestType: RequestType.POST,
-    saveEndpoint: 'http://18.230.151.22:3000/classes',
+    saveEndpoint: '',
 };
 

@@ -149,19 +149,29 @@ export class LessonScreenComponent implements OnInit {
     if (event.action === "remove") {
       this.deleteItem(event.id);
     } else if (event.action === "edit"){
-      this.lessonForm.requestType = RequestType.PUT
-      this.lessonForm.saveEndpoint = `http://18.230.151.22:3000/lessons/${this.selectedClassID}`
-      this.lessonFormOpen = true
+      this.editForm(event.id);
     }
   };
+
+  editForm(eventID){
+    const currentLesson: Lesson = this.lessons.filter(lesson => lesson.id === eventID)[0]
+    this.lessonForm.requestType = RequestType.PUT
+    this.lessonForm.inputs[0].standardValue = currentLesson.date;
+    this.lessonForm.inputs[1].standardValue = currentLesson.id;
+      this.lessonForm.saveEndpoint = `${this.disciplineService.url}/lessons/${this.selectedClassID}`
+      this.lessonFormOpen = true
+
+  }
 
   closeModal(){
     this.lessonFormOpen = false;
   }
 
   showForm(){
+    this.lessonForm.inputs[0].standardValue = '';
+    this.lessonForm.inputs[1].standardValue = this.selectedClassID || '';
     this.lessonForm.requestType = RequestType.POST
-    this.lessonForm.saveEndpoint = "http://18.230.151.22:3000/lessons";
+    this.lessonForm.saveEndpoint = `${this.disciplineService.url}/lessons`;
     this.lessonFormOpen = true
   }
 
