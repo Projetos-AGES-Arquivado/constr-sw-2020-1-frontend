@@ -13,7 +13,7 @@ import { Room } from '../models/Room';
 })
 export class DisciplinesService {
 
-  url = 'http://18.230.151.22:3000'; 
+  url = 'http://18.231.6.34:3000'; 
 
   // injetando o HttpClient
   constructor(private httpClient: HttpClient) { }

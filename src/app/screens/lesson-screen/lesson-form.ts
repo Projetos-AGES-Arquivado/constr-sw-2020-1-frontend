@@ -8,11 +8,21 @@ export const LESSON_FORM: FormModel = {
   inputs: [
     {
       inputType: InputType.Text,
-      fieldName: 'date',
+      fieldName: 'description',
+      label:'Descrição',
+      standardValue: ''
     },
     {
       inputType: InputType.Text,
-      fieldName: 'class_id'
+      fieldName: 'date',
+      label:'Data',
+      standardValue: ''
+    },
+    {
+      inputType: InputType.Text,
+      fieldName: 'class_id',
+      label:'Id da Turma',
+      standardValue: ''
     }
   ],
   requestType: RequestType.POST,

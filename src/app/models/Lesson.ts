@@ -1,7 +1,10 @@
 export interface Lesson {
     id: string,
     date: string,
-    class_id: string,
+    description: string,
+    class_id: {
+        id: string
+    },
     createdAt: string,
     updatedAt: string,
 }

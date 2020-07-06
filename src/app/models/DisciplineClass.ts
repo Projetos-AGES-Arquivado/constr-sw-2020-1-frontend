@@ -3,7 +3,10 @@ export interface DisciplineClass {
     number: number,
     timeSchedule: string,
     teacher: string,
-    course: string,
+    course: {
+        name: string,
+        id: string
+    },
     createdAt: string,
     updatedAt: string,
 }

@@ -83,7 +83,7 @@ export class LessonScreenComponent implements OnInit {
       this.cardInterface = this.lessons.map((lesson) => {
         return {
           _id: lesson.id,
-          label: `${lesson.date}`,
+          label: `${lesson.description}`,
         }
       })
       this.classSelected = true
@@ -148,20 +148,32 @@ export class LessonScreenComponent implements OnInit {
     console.log(event);
     if (event.action === "remove") {
       this.deleteItem(event.id);
-    } else if (event.action === "edit"){
-      this.lessonForm.requestType = RequestType.PUT
-      this.lessonForm.saveEndpoint = `http://18.230.151.22:3000/lessons/${this.selectedClassID}`
-      this.lessonFormOpen = true
+    } else if (event.action === "edit") {
+      this.editForm(event.id);
     }
   };
 
-  closeModal(){
+  editForm(eventID) {
+    const currentLesson: Lesson = this.lessons.filter(lesson => lesson.id === eventID)[0]
+    this.lessonForm.requestType = RequestType.PUT
+    this.lessonForm.inputs[0].standardValue = currentLesson.description || '';
+    this.lessonForm.inputs[1].standardValue = currentLesson.date;
+    this.lessonForm.inputs[2].standardValue = currentLesson.class_id.id;
+    this.lessonForm.saveEndpoint = `${this.disciplineService.url}/lessons/${currentLesson.id}`
+    this.lessonFormOpen = true
+
+  }
+
+  closeModal() {
     this.lessonFormOpen = false;
   }
 
-  showForm(){
+  showForm() {
+    this.lessonForm.inputs[0].standardValue = '';
+    this.lessonForm.inputs[1].standardValue = '';
+    this.lessonForm.inputs[2].standardValue = this.selectedClassID || '';
     this.lessonForm.requestType = RequestType.POST
-    this.lessonForm.saveEndpoint = "http://18.230.151.22:3000/lessons";
+    this.lessonForm.saveEndpoint = `${this.disciplineService.url}/lessons`;
     this.lessonFormOpen = true
   }
 
