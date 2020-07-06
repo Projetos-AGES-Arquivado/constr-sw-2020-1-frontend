@@ -50,12 +50,12 @@ const routes: Routes = [
     component: ListRoomsComponent,
   },
   {
-    path: 'buildings/:id/rooms/:roomId',
-    component: EditRoomComponent,
-  },
-  {
     path: 'buildings/:id/rooms/create',
     component: AddRoomComponent,
+  },
+  {
+    path: 'buildings/:id/rooms/:roomId',
+    component: EditRoomComponent,
   },
   {
     path: 'reservas',
