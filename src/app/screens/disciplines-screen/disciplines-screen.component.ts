@@ -57,8 +57,6 @@ export class DisciplinesScreenComponent implements OnInit {
     } else if (event.action === "edit") {
       this.editionForm(event.id);
     }
-    // sessionStorage.setItem('disciplineID', JSON.stringify(discipline))
-    // this.router.navigateByUrl('/turmas');
   };
 
   editionForm(eventID) {
