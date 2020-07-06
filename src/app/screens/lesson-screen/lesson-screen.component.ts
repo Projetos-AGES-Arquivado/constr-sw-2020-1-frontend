@@ -158,7 +158,7 @@ export class LessonScreenComponent implements OnInit {
     this.lessonForm.requestType = RequestType.PUT
     this.lessonForm.inputs[0].standardValue = currentLesson.description || '';
     this.lessonForm.inputs[1].standardValue = currentLesson.date;
-    this.lessonForm.inputs[2].standardValue = currentLesson.class_id;
+    this.lessonForm.inputs[2].standardValue = currentLesson.class_id.id;
     this.lessonForm.saveEndpoint = `${this.disciplineService.url}/lessons/${currentLesson.id}`
     this.lessonFormOpen = true
 

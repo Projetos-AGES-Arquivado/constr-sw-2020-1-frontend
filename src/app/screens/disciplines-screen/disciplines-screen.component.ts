@@ -43,7 +43,8 @@ export class DisciplinesScreenComponent implements OnInit {
   }
 
   deleteItem(disciplineID) {
-    if (confirm(`deletar ${disciplineID}?`)) {
+    const disciplineName = this.disciplines.filter(discipline => discipline.id === disciplineID)[0].name
+    if (confirm(`deletar ${disciplineName}?`)) {
       this.disciplineService.deleteDiscipline(disciplineID).subscribe(() => {
         this.getDisciplines()
         alert(`item de ID: ${disciplineID} deletado`)
